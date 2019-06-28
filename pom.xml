@@ -722,6 +722,7 @@
           <author>true</author>
           <use>true</use>
           <quiet>false</quiet>
+          <failOnError>false</failOnError>
           <show>private</show>
           <detail>true</detail>
         </configuration>
