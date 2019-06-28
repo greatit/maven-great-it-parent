@@ -6,7 +6,7 @@
     <author email="david.lakatos@great-it.com">David Lakatos</author>
   </properties>
   <body>
-    <release version="v1-SNAPSHOT" date="yyyy-MM-dd">
+    <release version="v1" date="2019-06-28">
       <action type="add" dev="David Lakatos" date="2019-06-28">Extracts plugin and dependency versions from existing projects
       </action>
     </release>
