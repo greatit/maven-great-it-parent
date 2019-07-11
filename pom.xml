@@ -92,6 +92,7 @@
     <asciidoctor-plugin.version>1.5.7.1</asciidoctor-plugin.version>
     <build-helper-plugin.version>3.0.0</build-helper-plugin.version>
     <changes-plugin.version>2.12.1</changes-plugin.version>
+    <checkstyle-plugin.version>3.1.0</checkstyle-plugin.version>
     <clover-plugin.version>4.3.1</clover-plugin.version>
     <cxf-plugin.version>${cxf.version}</cxf-plugin.version>
     <dbunit-plugin.version>1.0-beta-3</dbunit-plugin.version>
@@ -215,6 +216,11 @@
           <groupId>org.apache.cxf</groupId>
           <artifactId>cxf-codegen-plugin</artifactId>
           <version>${cxf-plugin.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-checkstyle-plugin</artifactId>
+          <version>${checkstyle-plugin.version}</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -573,6 +579,40 @@
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>verify-style</id>
+            <phase>validate</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+            <configuration>
+              <includeResources>true</includeResources>
+              <includeTestResources>true</includeTestResources>
+              <includes>**/*.java,**/*.sql</includes>
+              <resourceIncludes>**/*.properties,**/*.xml,**/*.wsdl</resourceIncludes>
+
+              <!-- violation handling -->
+              <logViolationsToConsole>true</logViolationsToConsole>
+              <failOnViolation>true</failOnViolation>
+              <failsOnError>true</failsOnError>
+
+              <checkstyleRules>
+                <!-- http://checkstyle.sourceforge.net/checks.html -->
+                <module name="Checker">
+                  <module name="NewlineAtEndOfFile" />
+                </module>
+                <module name="LineLength">
+                  <property name="max" value="120" />
+                </module>
+              </checkstyleRules>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-enforcer-plugin</artifactId>
         <executions>
           <execution>
@@ -746,6 +786,17 @@
       <plugin>
         <groupId>org.openclover</groupId>
         <artifactId>clover-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>checkstyle</report>
+            </reports>
+          </reportSet>
+        </reportSets>
       </plugin>
     </plugins>
   </reporting>
