@@ -221,6 +221,12 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-checkstyle-plugin</artifactId>
           <version>${checkstyle-plugin.version}</version>
+          <configuration>
+            <!-- violation handling -->
+            <logViolationsToConsole>true</logViolationsToConsole>
+            <failOnViolation>true</failOnViolation>
+            <failsOnError>true</failsOnError>
+          </configuration>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -582,7 +588,19 @@
         <artifactId>maven-checkstyle-plugin</artifactId>
         <executions>
           <execution>
-            <id>verify-style</id>
+            <id>verify-java-style</id>
+            <phase>validate</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+            <configuration>
+              <includeResources>false</includeResources>
+              <includeTestResources>false</includeTestResources>
+              <configLocation>google_checks.xml</configLocation>
+            </configuration>
+          </execution>
+          <execution>
+            <id>verify-resources-style</id>
             <phase>validate</phase>
             <goals>
               <goal>check</goal>
@@ -590,21 +608,11 @@
             <configuration>
               <includeResources>true</includeResources>
               <includeTestResources>true</includeTestResources>
-              <includes>**/*.java,**/*.sql</includes>
+              <includes>**/*.sql</includes>
               <resourceIncludes>**/*.properties,**/*.xml,**/*.wsdl</resourceIncludes>
-
-              <!-- violation handling -->
-              <logViolationsToConsole>true</logViolationsToConsole>
-              <failOnViolation>true</failOnViolation>
-              <failsOnError>true</failsOnError>
-
               <checkstyleRules>
-                <!-- http://checkstyle.sourceforge.net/checks.html -->
                 <module name="Checker">
                   <module name="NewlineAtEndOfFile" />
-                </module>
-                <module name="LineLength">
-                  <property name="max" value="120" />
                 </module>
               </checkstyleRules>
             </configuration>
@@ -719,6 +727,22 @@
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <configuration>
+          <includeResources>false</includeResources>
+          <includeTestResources>false</includeTestResources>
+          <configLocation>google_checks.xml</configLocation>
+        </configuration>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>checkstyle</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-project-info-reports-plugin</artifactId>
         <reportSets>
           <reportSet>
@@ -786,17 +810,6 @@
       <plugin>
         <groupId>org.openclover</groupId>
         <artifactId>clover-maven-plugin</artifactId>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-checkstyle-plugin</artifactId>
-        <reportSets>
-          <reportSet>
-            <reports>
-              <report>checkstyle</report>
-            </reports>
-          </reportSet>
-        </reportSets>
       </plugin>
     </plugins>
   </reporting>
