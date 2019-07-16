@@ -598,9 +598,12 @@
             <configuration>
               <includeResources>true</includeResources>
               <includeTestResources>true</includeTestResources>
-              <includes>**/*.sql</includes>
-              <excludes>**/target/**/*</excludes>
-              <resourceIncludes>**/*.properties,**/*.xml,**/*.wsdl</resourceIncludes>
+              <resourceIncludes>**/*.properties,**/*.xml,**/*.wsdl,**/*.sql</resourceIncludes>
+              <resourceExcludes>**/clover.xml,**/*soapui-project.xml</resourceExcludes>
+              <sourceDirectories>
+                <sourceDirectory>${project.build.sourceDirectory}</sourceDirectory>
+                <sourceDirectory>${project.build.testSourceDirectory}</sourceDirectory>
+              </sourceDirectories>
               <checkstyleRules>
                 <module name="Checker">
                   <module name="NewlineAtEndOfFile" />
