@@ -123,23 +123,6 @@
 
   <dependencyManagement>
     <dependencies>
-      <!-- BOMs -->
-      <!-- proper order matters since CXF wants to import an older Spring Boot -->
-      <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-dependencies</artifactId>
-        <version>${spring-boot.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.cxf</groupId>
-        <artifactId>cxf-parent</artifactId>
-        <version>${cxf.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-
       <!-- single dependencies -->
       <dependency>
         <groupId>com.google.guava</groupId>
