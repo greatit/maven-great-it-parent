@@ -228,6 +228,11 @@
           <version>${cxf-plugin.version}</version>
         </plugin>
         <plugin>
+          <groupId>org.apache.cxf</groupId>
+          <artifactId>cxf-wsdl-validator-plugin</artifactId>
+          <version>${cxf-plugin.version}</version>
+        </plugin>
+        <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-checkstyle-plugin</artifactId>
           <version>${checkstyle-plugin.version}</version>
