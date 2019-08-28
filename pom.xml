@@ -10,7 +10,7 @@
 
   <groupId>com.greatit</groupId>
   <artifactId>maven-greatit-parent</artifactId>
-  <version>1</version>
+  <version>2</version>
   <packaging>pom</packaging>
 
   <name>maven-greatit-parent</name>
@@ -42,10 +42,20 @@
   </developers>
 
   <distributionManagement>
+    <repository>
+      <id>golden-artifactory-internal</id>
+      <name>Golden Artifactory-releases</name>
+      <url>https://artifactory.great-it.local/maven-release-local</url>
+    </repository>
+    <snapshotRepository>
+      <id>golden-artifactory-internal</id>
+      <name>Golden Artifactory-snapshots</name>
+      <url>https://artifactory.great-it.local/maven-snapshot-local</url>
+    </snapshotRepository>
     <site>
-      <id>dev-site</id>
+      <id>golden-site-internal</id>
       <name>Great-IT Projects Site</name>
-      <url>scpexe://dev.great-it.local:/var/www/site/${project.artifactId}/${project.version}</url>
+      <url>scpexe://site.great-it.local:/var/www/site/${project.artifactId}/${project.version}</url>
     </site>
   </distributionManagement>
 
@@ -71,7 +81,7 @@
     <!-- dependency -->
     <asciidoctorj-diagram>1.5.10</asciidoctorj-diagram>
     <asciidoctorj-pdf>1.5.0-alpha.18</asciidoctorj-pdf>
-    <cxf.version>3.3.2</cxf.version>
+    <cxf.version>3.3.3</cxf.version>
     <dbunit.version>2.5.4</dbunit.version>
     <eclipselink.version>2.7.4</eclipselink.version>
     <el-api.version>3.0.0</el-api.version>
@@ -86,12 +96,13 @@
     <slf4j.version>1.7.25</slf4j.version>
     <soapui.version>5.5.0</soapui.version>
     <spring-boot.version>2.1.6.RELEASE</spring-boot.version>
-    <testcontainers.version>1.11.2</testcontainers.version>
+    <testcontainers.version>1.12.0</testcontainers.version>
 
     <!-- plugin -->
     <asciidoctor-plugin.version>1.5.7.1</asciidoctor-plugin.version>
     <build-helper-plugin.version>3.0.0</build-helper-plugin.version>
     <changes-plugin.version>2.12.1</changes-plugin.version>
+    <checkstyle-plugin.version>3.1.0</checkstyle-plugin.version>
     <clover-plugin.version>4.3.1</clover-plugin.version>
     <cxf-plugin.version>${cxf.version}</cxf-plugin.version>
     <dbunit-plugin.version>1.0-beta-3</dbunit-plugin.version>
@@ -112,23 +123,6 @@
 
   <dependencyManagement>
     <dependencies>
-      <!-- BOMs -->
-      <!-- proper order matters since CXF wants to import an older Spring Boot -->
-      <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-dependencies</artifactId>
-        <version>${spring-boot.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.cxf</groupId>
-        <artifactId>cxf-parent</artifactId>
-        <version>${cxf.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-
       <!-- single dependencies -->
       <dependency>
         <groupId>com.google.guava</groupId>
@@ -217,6 +211,22 @@
           <version>${cxf-plugin.version}</version>
         </plugin>
         <plugin>
+          <groupId>org.apache.cxf</groupId>
+          <artifactId>cxf-wsdl-validator-plugin</artifactId>
+          <version>${cxf-plugin.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-checkstyle-plugin</artifactId>
+          <version>${checkstyle-plugin.version}</version>
+          <configuration>
+            <!-- violation handling -->
+            <logViolationsToConsole>true</logViolationsToConsole>
+            <failOnViolation>true</failOnViolation>
+            <failsOnError>true</failsOnError>
+          </configuration>
+        </plugin>
+        <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-changes-plugin</artifactId>
           <version>${changes-plugin.version}</version>
@@ -256,6 +266,21 @@
               <excludeRoot>target/generated-sources</excludeRoot>
             </excludeRoots>
             <verbose>true</verbose>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-release-plugin</artifactId>
+          <configuration>
+            <autoVersionSubmodules>true</autoVersionSubmodules>
+            <pushChanges>false</pushChanges>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-site-plugin</artifactId>
+          <configuration>
+            <chmodMode>a+rwX</chmodMode>
           </configuration>
         </plugin>
         <plugin>
@@ -318,29 +343,6 @@
               <require>asciidoctor-diagram</require>
             </requires>
           </configuration>
-          <executions>
-            <execution>
-              <id>output-html-doc</id>
-              <phase>prepare-package</phase>
-              <goals>
-                <goal>process-asciidoc</goal>
-              </goals>
-              <configuration>
-                <backend>html</backend>
-              </configuration>
-            </execution>
-            <execution>
-              <id>output-pdf-doc</id>
-              <phase>prepare-package</phase>
-              <goals>
-                <goal>process-asciidoc</goal>
-              </goals>
-              <configuration>
-                <backend>pdf</backend>
-                <doctype>book</doctype>
-              </configuration>
-            </execution>
-          </executions>
         </plugin>
         <plugin>
           <groupId>org.bsc.maven</groupId>
@@ -405,7 +407,7 @@
                     </goals>
                   </pluginExecutionFilter>
                   <action>
-                    <execute>validate</execute>
+                    <ignore />
                   </action>
                 </pluginExecution>
                 <pluginExecution>
@@ -418,7 +420,20 @@
                     </goals>
                   </pluginExecutionFilter>
                   <action>
-                    <execute>validate</execute>
+                    <ignore />
+                  </action>
+                </pluginExecution>
+                <pluginExecution>
+                  <pluginExecutionFilter>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-remote-resources-plugin</artifactId>
+                    <versionRange>[1.5,)</versionRange>
+                    <goals>
+                      <goal>process</goal>
+                    </goals>
+                  </pluginExecutionFilter>
+                  <action>
+                    <ignore />
                   </action>
                 </pluginExecution>
                 <pluginExecution>
@@ -470,9 +485,7 @@
                     </goals>
                   </pluginExecutionFilter>
                   <action>
-                    <execute>
-                      <runOnIncremental>false</runOnIncremental>
-                    </execute>
+                    <ignore />
                   </action>
                 </pluginExecution>
                 <pluginExecution>
@@ -499,9 +512,7 @@
                     </goals>
                   </pluginExecutionFilter>
                   <action>
-                    <execute>
-                      <runOnIncremental>true</runOnIncremental>
-                    </execute>
+                    <ignore />
                   </action>
                 </pluginExecution>
                 <pluginExecution>
@@ -573,6 +584,46 @@
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>verify-java-style</id>
+            <phase>validate</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+            <configuration>
+              <includeResources>false</includeResources>
+              <includeTestResources>false</includeTestResources>
+              <configLocation>google_checks.xml</configLocation>
+            </configuration>
+          </execution>
+          <execution>
+            <id>verify-resources-style</id>
+            <phase>validate</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+            <configuration>
+              <includeResources>true</includeResources>
+              <includeTestResources>true</includeTestResources>
+              <resourceIncludes>**/*.properties,**/*.xml,**/*.wsdl,**/*.sql</resourceIncludes>
+              <resourceExcludes>**/clover.xml,**/*soapui-project.xml</resourceExcludes>
+              <sourceDirectories>
+                <sourceDirectory>${project.build.sourceDirectory}</sourceDirectory>
+                <sourceDirectory>${project.build.testSourceDirectory}</sourceDirectory>
+              </sourceDirectories>
+              <checkstyleRules>
+                <module name="Checker">
+                  <module name="NewlineAtEndOfFile" />
+                </module>
+              </checkstyleRules>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-enforcer-plugin</artifactId>
         <executions>
           <execution>
@@ -627,29 +678,37 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-site-plugin</artifactId>
-        <configuration>
-          <chmodMode>a+rwX</chmodMode>
-        </configuration>
         <executions>
           <execution>
-            <id>generate-packaged-documentation</id>
+            <id>generate-site-jar</id>
+            <phase>post-site</phase>
             <goals>
-              <goal>site</goal>
+              <goal>jar</goal>
             </goals>
-            <phase>prepare-package</phase>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>attach-test-sources</id>
+            <goals>
+              <goal>test-jar</goal>
+            </goals>
           </execution>
         </executions>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <executions>
-          <execution>
-            <goals>
-              <goal>test</goal>
-            </goals>
-          </execution>
-        </executions>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -663,6 +722,33 @@
             </manifest>
           </archive>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.asciidoctor</groupId>
+        <artifactId>asciidoctor-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>output-html-doc</id>
+            <phase>site</phase>
+            <goals>
+              <goal>process-asciidoc</goal>
+            </goals>
+            <configuration>
+              <backend>html</backend>
+            </configuration>
+          </execution>
+          <execution>
+            <id>output-pdf-doc</id>
+            <phase>site</phase>
+            <goals>
+              <goal>process-asciidoc</goal>
+            </goals>
+            <configuration>
+              <backend>pdf</backend>
+              <doctype>book</doctype>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
@@ -684,6 +770,22 @@
 
   <reporting>
     <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <configuration>
+          <includeResources>false</includeResources>
+          <includeTestResources>false</includeTestResources>
+          <configLocation>google_checks.xml</configLocation>
+        </configuration>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>checkstyle</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-project-info-reports-plugin</artifactId>
