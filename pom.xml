@@ -82,6 +82,7 @@
     <asciidoctorj-diagram>1.5.10</asciidoctorj-diagram>
     <asciidoctorj-pdf>1.5.0-alpha.18</asciidoctorj-pdf>
     <cxf.version>3.3.3</cxf.version>
+    <cxf-xjcplugins.version>3.3.0</cxf-xjcplugins.version>
     <dbunit.version>2.5.4</dbunit.version>
     <eclipselink.version>2.7.4</eclipselink.version>
     <el-api.version>3.0.0</el-api.version>
