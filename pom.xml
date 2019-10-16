@@ -370,7 +370,7 @@
                 <processors>
                   <processor>org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor</processor>
                 </processors>
-                <outputDirectory>${project.build.directory}/generated-sources</outputDirectory>
+                <outputDirectory>${project.build.directory}/generated-sources/jpa</outputDirectory>
               </configuration>
             </execution>
           </executions>
