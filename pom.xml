@@ -108,6 +108,7 @@
     <cxf-plugin.version>${cxf.version}</cxf-plugin.version>
     <dbunit-plugin.version>1.0-beta-3</dbunit-plugin.version>
     <exec-plugin.version>1.6.0</exec-plugin.version>
+    <formatter-plugin.version>2.10.0</formatter-plugin.version>
     <hibernate-tools-plugin.version>5.4.3.Final</hibernate-tools-plugin.version>
     <lifecycle-mapping-plugin.version>1.0.0</lifecycle-mapping-plugin.version>
     <liquibase-plugin.version>3.6.3</liquibase-plugin.version>
@@ -205,6 +206,11 @@
               </property>
             </soapuiProperties>
           </configuration>
+        </plugin>
+        <plugin>
+          <groupId>net.revelc.code.formatter</groupId>
+          <artifactId>formatter-maven-plugin</artifactId>
+          <version>${formatter-plugin.version}</version>
         </plugin>
         <plugin>
           <groupId>org.apache.cxf</groupId>
