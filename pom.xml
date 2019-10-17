@@ -94,7 +94,7 @@
     <javax-persistence.version>2.2.1</javax-persistence.version>
     <mysql.version>8.0.11</mysql.version>
     <persistence.version>2.2.1</persistence.version>
-    <slf4j.version>1.7.25</slf4j.version>
+    <slf4j.version>1.7.28</slf4j.version>
     <soapui.version>5.5.0</soapui.version>
     <spring-boot.version>2.1.6.RELEASE</spring-boot.version>
     <testcontainers.version>1.12.0</testcontainers.version>
@@ -167,6 +167,17 @@
         <artifactId>lombok</artifactId>
         <version>${lombok.version}</version>
 	  </dependency>
+	  <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>${slf4j.version}</version>
+      </dependency>
+      <!-- only for Log4J 1.2 -->
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-log4j12</artifactId>
+        <version>${slf4j.version}</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
