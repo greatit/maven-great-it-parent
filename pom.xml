@@ -45,12 +45,12 @@
     <repository>
       <id>golden-artifactory-internal</id>
       <name>Golden Artifactory-releases</name>
-      <url>https://artifactory.great-it.local/maven-release-local</url>
+      <url>https://artifactory.great-it.local/maven-release-public</url>
     </repository>
     <snapshotRepository>
       <id>golden-artifactory-internal</id>
       <name>Golden Artifactory-snapshots</name>
-      <url>https://artifactory.great-it.local/maven-snapshot-local</url>
+      <url>https://artifactory.great-it.local/maven-snapshot-public</url>
     </snapshotRepository>
     <site>
       <id>golden-site-internal</id>
