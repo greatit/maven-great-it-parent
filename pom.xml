@@ -648,7 +648,7 @@
               <includeResources>true</includeResources>
               <includeTestResources>true</includeTestResources>
               <resourceIncludes>**/*.properties,**/*.xml,**/*.wsdl,**/*.sql</resourceIncludes>
-              <resourceExcludes>**/clover.xml,**/*soapui-project.xml</resourceExcludes>
+              <resourceExcludes>**/clover.xml,**/*soapui-project.xml,**/target/**/*</resourceExcludes>
               <sourceDirectories>
                 <sourceDirectory>${project.build.sourceDirectory}</sourceDirectory>
                 <sourceDirectory>${project.build.testSourceDirectory}</sourceDirectory>
