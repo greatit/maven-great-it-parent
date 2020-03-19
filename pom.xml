@@ -10,7 +10,7 @@
 
   <groupId>com.greatit</groupId>
   <artifactId>maven-greatit-parent</artifactId>
-  <version>3</version>
+  <version>4</version>
   <packaging>pom</packaging>
 
   <name>maven-greatit-parent</name>
@@ -45,12 +45,12 @@
     <repository>
       <id>golden-artifactory-internal</id>
       <name>Golden Artifactory-releases</name>
-      <url>https://artifactory.great-it.local/maven-release-local</url>
+      <url>https://artifactory.great-it.local/maven-release-public</url>
     </repository>
     <snapshotRepository>
       <id>golden-artifactory-internal</id>
       <name>Golden Artifactory-snapshots</name>
-      <url>https://artifactory.great-it.local/maven-snapshot-local</url>
+      <url>https://artifactory.great-it.local/maven-snapshot-public</url>
     </snapshotRepository>
     <site>
       <id>golden-site-internal</id>
@@ -648,7 +648,7 @@
               <includeResources>true</includeResources>
               <includeTestResources>true</includeTestResources>
               <resourceIncludes>**/*.properties,**/*.xml,**/*.wsdl,**/*.sql</resourceIncludes>
-              <resourceExcludes>**/clover.xml,**/*soapui-project.xml</resourceExcludes>
+              <resourceExcludes>**/clover.xml,**/*soapui-project.xml,**/target/**/*</resourceExcludes>
               <sourceDirectories>
                 <sourceDirectory>${project.build.sourceDirectory}</sourceDirectory>
                 <sourceDirectory>${project.build.testSourceDirectory}</sourceDirectory>
