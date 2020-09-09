@@ -364,7 +364,7 @@
                 </includes>
               </resource>
             </resources>
-            <imagesDir>spec/img</imagesDir>
+            <imagesDir>./img</imagesDir>
             <outputDirectory>${project.reporting.outputDirectory}/spec</outputDirectory>
             <requires>
               <require>asciidoctor-diagram</require>
