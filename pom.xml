@@ -364,7 +364,6 @@
                 </includes>
               </resource>
             </resources>
-            <imagesDir>../spec/img</imagesDir>
             <outputDirectory>${project.reporting.outputDirectory}/spec</outputDirectory>
             <requires>
               <require>asciidoctor-diagram</require>
@@ -775,6 +774,7 @@
             </goals>
             <configuration>
               <backend>html</backend>
+              <imagesDir>img</imagesDir>
             </configuration>
           </execution>
           <execution>
@@ -786,7 +786,8 @@
             <configuration>
               <backend>pdf</backend>
               <doctype>book</doctype>
-            </configuration>
+              <imagesDir>${project.reporting.outputDirectory}/spec/img</imagesDir>
+						</configuration>
           </execution>
         </executions>
       </plugin>
