@@ -39,6 +39,17 @@
       </roles>
       <timezone>CEST</timezone>
     </developer>
+    <developer>
+      <id>lbaboth</id>
+      <name>Laszlo Baboth</name>
+      <email>laszlo.baboth@great-it.com</email>
+      <organization>Great-IT</organization>
+      <organizationUrl>http://great-it.com/</organizationUrl>
+      <roles>
+        <role>software developer</role>
+      </roles>
+      <timezone>CEST</timezone>
+    </developer>
   </developers>
 
   <distributionManagement>
