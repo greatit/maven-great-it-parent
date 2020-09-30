@@ -77,7 +77,7 @@
     <!-- location -->
     <perftest.report.directory>${project.build.directory}/soapui/report</perftest.report.directory>
     <perftest.log.directory>${project.build.directory}/soapui/log</perftest.log.directory>
-    <jenkins.server>https://jenkins.great-it.local</jenkins.server>
+    <jenkins.server>https://jenkins.internal.great-it.com</jenkins.server>
 
     <!-- dependency -->
     <asciidoctorj-diagram>2.0.1</asciidoctorj-diagram>
