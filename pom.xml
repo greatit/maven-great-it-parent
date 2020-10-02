@@ -114,7 +114,7 @@
 
     <!-- plugin -->
     <asciidoctor-plugin.version>1.6.0</asciidoctor-plugin.version>
-    <build-helper-plugin.version>3.0.0</build-helper-plugin.version>
+    <build-helper-plugin.version>3.2.0</build-helper-plugin.version>
     <changes-plugin.version>2.12.1</changes-plugin.version>
     <checkstyle-plugin.version>3.1.0</checkstyle-plugin.version>
     <clover-plugin.version>4.3.1</clover-plugin.version>
