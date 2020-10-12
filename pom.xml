@@ -56,17 +56,17 @@
     <repository>
       <id>golden-artifactory-internal</id>
       <name>Golden Artifactory-releases</name>
-      <url>https://artifactory.great-it.local/maven-release-public</url>
+      <url>https://artifactory.prod.internal.great-it.com/maven-release-public</url>
     </repository>
     <snapshotRepository>
       <id>golden-artifactory-internal</id>
       <name>Golden Artifactory-snapshots</name>
-      <url>https://artifactory.great-it.local/maven-snapshot-public</url>
+      <url>https://artifactory.prod.internal.great-it.com/maven-snapshot-public</url>
     </snapshotRepository>
     <site>
       <id>golden-site-internal</id>
       <name>Great-IT Projects Site</name>
-      <url>scpexe://site.great-it.local:/var/www/site/${project.artifactId}/${project.version}</url>
+      <url>scpexe://site.prod.internal.great-it.com:/var/www/site/${project.artifactId}/${project.version}</url>
     </site>
   </distributionManagement>
 
