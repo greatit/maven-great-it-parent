@@ -14,7 +14,7 @@ pipeline {
 		}
 		stage('Generate and deploy site') {
 			steps{
-				sh 'mvn site-deploy deploy:deploy'
+				sh 'mvn site deploy:deploy'
 			}
 		}
 	}
