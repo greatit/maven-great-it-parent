@@ -89,6 +89,12 @@
     <perftest.report.directory>${project.build.directory}/soapui/report</perftest.report.directory>
     <perftest.log.directory>${project.build.directory}/soapui/log</perftest.log.directory>
     <jenkins.server>https://jenkins.prod.internal.great-it.com</jenkins.server>
+    <!-- Jenkins' Github OAuth does not care about user names, only personal access tokens -->
+    <jenkins.username>username-irrelevant</jenkins.username>
+    <!-- Github personal access token with the following permissions -->
+    <!-- * admin:org/read:org -->
+    <!-- * user/user:email -->
+    <jenkins.password>GITHUB_PERSONAL_ACCESS_TOKEN</jenkins.password>
 
     <!-- dependency -->
     <asciidoctorj-diagram>2.0.1</asciidoctorj-diagram>
