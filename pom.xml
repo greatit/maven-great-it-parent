@@ -94,7 +94,7 @@
     <!-- Github personal access token with the following permissions -->
     <!-- * admin:org/read:org -->
     <!-- * user/user:email -->
-    <jenkins.password>GITHUB_PERSONAL_ACCESS_TOKEN</jenkins.password>
+    <jenkins.password>${env.JENKINSFILE_PLUGIN_GITHUB_PERSONAL_ACCESS_TOKEN}</jenkins.password>
 
     <!-- dependency -->
     <asciidoctorj-diagram>2.0.1</asciidoctorj-diagram>

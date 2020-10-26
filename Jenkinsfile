@@ -3,6 +3,10 @@ pipeline {
 		string(name: "MVN_VERSION", defaultValue: "3.6.3", description: "Maven version")
 		string(name: "JAVA_VERSION", defaultValue: "openjdk-8", description: "Java version")
 	}
+	environment {
+		JENKINSFILE_PLUGIN_GITHUB_PERSONAL_ACCESS_TOKEN = credentials('great-bot-github-token')
+	}
+
 	agent {
 		kubernetes {
 			yaml """
