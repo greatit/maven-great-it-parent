@@ -102,7 +102,7 @@
     <cxf.version>3.3.3</cxf.version>
     <cxf-xjcplugins.version>3.3.0</cxf-xjcplugins.version>
     <dbunit.version>2.5.4</dbunit.version>
-    <eclipselink.version>2.7.4</eclipselink.version>
+    <eclipselink.version>2.7.7</eclipselink.version>
     <el-api.version>3.0.0</el-api.version>
     <git-commit-id-plugin.version>3.0.0</git-commit-id-plugin.version>
     <groovy.version>2.5.7</groovy.version>
@@ -132,7 +132,7 @@
     <lifecycle-mapping-plugin.version>1.0.0</lifecycle-mapping-plugin.version>
     <liquibase-plugin.version>3.6.3</liquibase-plugin.version>
     <pmd-plugin.version>3.8</pmd-plugin.version>
-    <processor-plugin.version>3.3.3</processor-plugin.version>
+    <processor-plugin.version>4.2-jdk8</processor-plugin.version>
     <spring-boot-plugin.version>${spring-boot.version}</spring-boot-plugin.version>
     <staticweave-plugin.version>1.0.0</staticweave-plugin.version>
     <tidy-plugin.version>1.1.0</tidy-plugin.version>
@@ -381,6 +381,11 @@
           </configuration>
         </plugin>
         <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>build-helper-maven-plugin</artifactId>
+          <version>${build-helper-plugin.version}</version>
+        </plugin>
+        <plugin>
           <groupId>org.bsc.maven</groupId>
           <artifactId>maven-processor-plugin</artifactId>
           <version>${processor-plugin.version}</version>
@@ -393,9 +398,7 @@
               </goals>
               <configuration>
                 <!-- I think these lines are unncecessary -->
-                <compilerArguments>
-                  -Aeclipselink.persistencexml=${basedir}/src/main/resources/META-INF/persistence.xml
-                </compilerArguments>
+                <compilerArguments>-Aeclipselink.persistencexml=${basedir}/src/main/resources/META-INF/persistence.xml</compilerArguments>
                 <processors>
                   <processor>org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor</processor>
                 </processors>
@@ -415,11 +418,6 @@
               <version>${groovy.version}</version>
             </dependency>
           </dependencies>
-        </plugin>
-        <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>build-helper-maven-plugin</artifactId>
-          <version>${build-helper-plugin.version}</version>
         </plugin>
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
