@@ -130,7 +130,7 @@
     <formatter-plugin.version>2.10.0</formatter-plugin.version>
     <hibernate-tools-plugin.version>5.4.3.Final</hibernate-tools-plugin.version>
     <lifecycle-mapping-plugin.version>1.0.0</lifecycle-mapping-plugin.version>
-    <liquibase-plugin.version>3.6.3</liquibase-plugin.version>
+    <liquibase-plugin.version>3.10.3</liquibase-plugin.version>
     <pmd-plugin.version>3.8</pmd-plugin.version>
     <processor-plugin.version>4.2-jdk8</processor-plugin.version>
     <spring-boot-plugin.version>${spring-boot.version}</spring-boot-plugin.version>
