@@ -105,7 +105,7 @@
     <eclipselink.version>2.7.7</eclipselink.version>
     <el-api.version>3.0.0</el-api.version>
     <git-commit-id-plugin.version>3.0.0</git-commit-id-plugin.version>
-    <groovy.version>2.5.7</groovy.version>
+    <groovy.version>2.5.14</groovy.version>
     <guava.version>28.0-jre</guava.version>
     <hibernate-validator.version>6.1.0.Final</hibernate-validator.version>
     <jakarta-persistence.version>2.2.2</jakarta-persistence.version>
