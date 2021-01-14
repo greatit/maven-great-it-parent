@@ -114,15 +114,16 @@
     <persistence.version>2.2.1</persistence.version>
     <slf4j.version>1.7.28</slf4j.version>
     <soapui.version>5.5.0</soapui.version>
-    <spring-boot.version>2.4.0</spring-boot.version>
+    <spring-boot.version>2.4.1</spring-boot.version>
     <testcontainers.version>1.12.0</testcontainers.version>
-    <lombok.version>1.18.10</lombok.version>
+    <lombok.version>1.18.16</lombok.version>
 
     <!-- plugin -->
     <asciidoctor-plugin.version>1.6.0</asciidoctor-plugin.version>
     <build-helper-plugin.version>3.2.0</build-helper-plugin.version>
     <changes-plugin.version>2.12.1</changes-plugin.version>
     <checkstyle-plugin.version>3.1.0</checkstyle-plugin.version>
+    <compiler-plugin.version>3.8.1</compiler-plugin.version>
     <clover-plugin.version>4.3.1</clover-plugin.version>
     <cxf-plugin.version>${cxf.version}</cxf-plugin.version>
     <dbunit-plugin.version>1.0-beta-3</dbunit-plugin.version>
@@ -286,6 +287,21 @@
           <configuration>
             <version>v${project.version}</version>
             <skipSnapshots>true</skipSnapshots>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>${compiler-plugin.version}</version>
+          <configuration>
+            <encoding>${project.build.sourceEncoding}</encoding>
+            <annotationProcessorPaths>
+              <path>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+              </path>
+            </annotationProcessorPaths>
           </configuration>
         </plugin>
         <plugin>
@@ -879,27 +895,27 @@
           </reportSet>
         </reportSets>
       </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <configuration>
-          <author>true</author>
-          <use>true</use>
-          <quiet>false</quiet>
-          <failOnError>false</failOnError>
-          <show>private</show>
-          <detail>true</detail>
-        </configuration>
-        <reportSets>
-          <reportSet>
-            <reports>
-              <report>aggregate</report>
-              <report>javadoc</report>
-              <report>test-javadoc</report>
-            </reports>
-          </reportSet>
-        </reportSets>
-      </plugin>
+      <!-- <plugin> -->
+      <!-- <groupId>org.apache.maven.plugins</groupId> -->
+      <!-- <artifactId>maven-javadoc-plugin</artifactId> -->
+      <!-- <configuration> -->
+      <!-- <author>true</author> -->
+      <!-- <use>true</use> -->
+      <!-- <quiet>false</quiet> -->
+      <!-- <failOnError>false</failOnError> -->
+      <!-- <show>private</show> -->
+      <!-- <detail>true</detail> -->
+      <!-- </configuration> -->
+      <!-- <reportSets> -->
+      <!-- <reportSet> -->
+      <!-- <reports> -->
+      <!-- <report>aggregate</report> -->
+      <!-- <report>javadoc</report> -->
+      <!-- <report>test-javadoc</report> -->
+      <!-- </reports> -->
+      <!-- </reportSet> -->
+      <!-- </reportSets> -->
+      <!-- </plugin> -->
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>versions-maven-plugin</artifactId>
