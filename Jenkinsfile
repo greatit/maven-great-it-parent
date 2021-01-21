@@ -25,11 +25,11 @@ spec:
     tty: true
     volumeMounts:
     - name: m2-home
-      mountPath: /root/.m2
+      mountPath: /maven-repository
   volumes:
   - name: m2-home
     hostPath:
-      path: /var/lib/jenkins-prod/.m2
+      path: /var/lib/jenkins-prod/.m2/repository
       type: Directory
 """
 		}
@@ -37,8 +37,10 @@ spec:
 	stages {
 		stage('Build, test and deploy code') {
 			steps {
-				container('maven') {
-					sh 'mvn clean site deploy'
+				configFileProvider([configFile(fileId: '650e4889-d136-4524-a21c-6314f246a9f5', variable: 'MAVEN_SETTINGS_XML')]) {
+					container('maven') {
+						sh 'mvn -s $MAVEN_SETTINGS_XML clean deploy'
+					}
 				}
 			}
 		}
