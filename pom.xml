@@ -110,6 +110,7 @@
     <hibernate-validator.version>6.1.0.Final</hibernate-validator.version>
     <jakarta-persistence.version>2.2.2</jakarta-persistence.version>
     <javax-persistence.version>2.2.1</javax-persistence.version>
+    <modelmapper.version>2.3.9</modelmapper.version>
     <mysql.version>8.0.22</mysql.version>
     <persistence.version>2.2.1</persistence.version>
     <slf4j.version>1.7.28</slf4j.version>
@@ -181,6 +182,11 @@
         <groupId>org.hibernate.validator</groupId>
         <artifactId>hibernate-validator</artifactId>
         <version>${hibernate-validator.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.modelmapper</groupId>
+        <artifactId>modelmapper</artifactId>
+        <version>${modelmapper.version}</version>
       </dependency>
       <dependency>
         <groupId>org.projectlombok</groupId>
