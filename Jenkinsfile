@@ -26,6 +26,8 @@ spec:
     volumeMounts:
     - name: m2-home
       mountPath: /maven-repository
+  imagePullSecrets:
+  - name: regcred
   volumes:
   - name: m2-home
     hostPath:
