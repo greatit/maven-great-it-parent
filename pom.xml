@@ -99,38 +99,38 @@
     <!-- dependency -->
     <asciidoctorj-diagram>2.0.1</asciidoctorj-diagram>
     <asciidoctorj-pdf>1.5.0-rc.2</asciidoctorj-pdf>
-    <cxf.version>3.3.3</cxf.version>
+    <cxf.version>3.4.0</cxf.version>
     <cxf-xjcplugins.version>3.3.0</cxf-xjcplugins.version>
-    <dbunit.version>2.5.4</dbunit.version>
-    <eclipselink.version>2.7.7</eclipselink.version>
+    <dbunit.version>2.6.0</dbunit.version>
+    <eclipselink.version>2.7.8</eclipselink.version>
     <el-api.version>3.0.0</el-api.version>
-    <git-commit-id-plugin.version>3.0.0</git-commit-id-plugin.version>
+    <git-commit-id-plugin.version>4.0.0</git-commit-id-plugin.version>
     <groovy.version>2.5.14</groovy.version>
     <guava.version>28.0-jre</guava.version>
-    <hibernate-validator.version>6.1.0.Final</hibernate-validator.version>
+    <hibernate-validator.version>6.0.0.Final</hibernate-validator.version>
     <jakarta-persistence.version>2.2.2</jakarta-persistence.version>
     <javax-persistence.version>2.2.1</javax-persistence.version>
     <modelmapper.version>2.3.9</modelmapper.version>
     <mysql.version>8.0.22</mysql.version>
     <persistence.version>2.2.1</persistence.version>
-    <slf4j.version>1.7.28</slf4j.version>
+    <slf4j.version>1.7.29</slf4j.version>
     <soapui.version>5.5.0</soapui.version>
-    <spring-boot.version>2.4.1</spring-boot.version>
-    <testcontainers.version>1.12.0</testcontainers.version>
-    <lombok.version>1.18.16</lombok.version>
+    <spring-boot.version>2.4.2</spring-boot.version>
+    <testcontainers.version>1.13.0</testcontainers.version>
+    <lombok.version>1.18.18</lombok.version>
 
     <!-- plugin -->
     <asciidoctor-plugin.version>1.6.0</asciidoctor-plugin.version>
     <build-helper-plugin.version>3.2.0</build-helper-plugin.version>
     <changes-plugin.version>2.12.1</changes-plugin.version>
-    <checkstyle-plugin.version>3.1.0</checkstyle-plugin.version>
+    <checkstyle-plugin.version>3.1.1</checkstyle-plugin.version>
     <compiler-plugin.version>3.8.1</compiler-plugin.version>
-    <clover-plugin.version>4.3.1</clover-plugin.version>
+    <clover-plugin.version>4.4.0</clover-plugin.version>
     <cxf-plugin.version>${cxf.version}</cxf-plugin.version>
     <dbunit-plugin.version>1.0-beta-3</dbunit-plugin.version>
     <exec-plugin.version>1.6.0</exec-plugin.version>
-    <formatter-plugin.version>2.10.0</formatter-plugin.version>
-    <hibernate-tools-plugin.version>5.4.3.Final</hibernate-tools-plugin.version>
+    <formatter-plugin.version>2.11.0</formatter-plugin.version>
+    <hibernate-tools-plugin.version>5.4.4.Final</hibernate-tools-plugin.version>
     <lifecycle-mapping-plugin.version>1.0.0</lifecycle-mapping-plugin.version>
     <liquibase-plugin.version>3.10.3</liquibase-plugin.version>
     <pmd-plugin.version>3.8</pmd-plugin.version>
@@ -300,14 +300,23 @@
           <artifactId>maven-compiler-plugin</artifactId>
           <version>${compiler-plugin.version}</version>
           <configuration>
+            <source>1.8</source>
+            <target>1.8</target>
             <encoding>${project.build.sourceEncoding}</encoding>
             <annotationProcessorPaths>
-              <path>
+              <annotationProcessorPath>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
-              </path>
+              </annotationProcessorPath>
+              <annotationProcessorPath>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-jpamodelgen</artifactId>
+                <version>5.4.28.Final</version>
+              </annotationProcessorPath>
             </annotationProcessorPaths>
+            <!-- works around bug "endPosTable already set" -->
+            <useIncrementalCompilation>false</useIncrementalCompilation>
           </configuration>
         </plugin>
         <plugin>
