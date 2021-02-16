@@ -107,7 +107,7 @@
     <git-commit-id-plugin.version>4.0.0</git-commit-id-plugin.version>
     <groovy.version>2.5.14</groovy.version>
     <guava.version>28.0-jre</guava.version>
-    <hibernate-validator.version>6.0.0.Final</hibernate-validator.version>
+    <hibernate-validator.version>6.0.18.Final</hibernate-validator.version>
     <jakarta-persistence.version>2.2.2</jakarta-persistence.version>
     <javax-persistence.version>2.2.1</javax-persistence.version>
     <modelmapper.version>2.3.9</modelmapper.version>
