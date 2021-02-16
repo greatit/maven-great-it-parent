@@ -5,12 +5,12 @@
   <parent>
     <groupId>org.apache</groupId>
     <artifactId>apache</artifactId>
-    <version>21</version>
+    <version>23</version>
   </parent>
 
   <groupId>com.greatit</groupId>
   <artifactId>maven-greatit-parent</artifactId>
-  <version>4</version>
+  <version>5</version>
   <packaging>pom</packaging>
 
   <name>maven-greatit-parent</name>
@@ -39,23 +39,34 @@
       </roles>
       <timezone>CEST</timezone>
     </developer>
+    <developer>
+      <id>lbaboth</id>
+      <name>Laszlo Baboth</name>
+      <email>laszlo.baboth@great-it.com</email>
+      <organization>Great-IT</organization>
+      <organizationUrl>http://great-it.com/</organizationUrl>
+      <roles>
+        <role>software developer</role>
+      </roles>
+      <timezone>CEST</timezone>
+    </developer>
   </developers>
 
   <distributionManagement>
     <repository>
-      <id>golden-artifactory-internal</id>
+      <id>golden-artifactory-public-release</id>
       <name>Golden Artifactory-releases</name>
-      <url>https://artifactory.great-it.local/maven-release-public</url>
+      <url>https://artifactory.prod.internal.great-it.com/maven-release-public</url>
     </repository>
     <snapshotRepository>
-      <id>golden-artifactory-internal</id>
+      <id>golden-artifactory-public-snapshot</id>
       <name>Golden Artifactory-snapshots</name>
-      <url>https://artifactory.great-it.local/maven-snapshot-public</url>
+      <url>https://artifactory.prod.internal.great-it.com/maven-snapshot-public</url>
     </snapshotRepository>
     <site>
       <id>golden-site-internal</id>
       <name>Great-IT Projects Site</name>
-      <url>scpexe://site.great-it.local:/var/www/site/${project.artifactId}/${project.version}</url>
+      <url>scpexe://site.prod.internal.great-it.com:/var/www/site/${project.artifactId}/${project.version}</url>
     </site>
   </distributionManagement>
 
@@ -77,45 +88,53 @@
     <!-- location -->
     <perftest.report.directory>${project.build.directory}/soapui/report</perftest.report.directory>
     <perftest.log.directory>${project.build.directory}/soapui/log</perftest.log.directory>
-    <jenkins.server>https://jenkins.great-it.local</jenkins.server>
+    <jenkins.server>https://jenkins.prod.internal.great-it.com</jenkins.server>
+    <!-- Jenkins' Github OAuth does not care about user names, only personal access tokens -->
+    <jenkins.username>username-irrelevant</jenkins.username>
+    <!-- Github personal access token with the following permissions -->
+    <!-- * admin:org/read:org -->
+    <!-- * user/user:email -->
+    <jenkins.password>${env.JENKINSFILE_PLUGIN_GITHUB_PERSONAL_ACCESS_TOKEN}</jenkins.password>
 
     <!-- dependency -->
     <asciidoctorj-diagram>2.0.1</asciidoctorj-diagram>
     <asciidoctorj-pdf>1.5.0-rc.2</asciidoctorj-pdf>
-    <cxf.version>3.3.3</cxf.version>
+    <cxf.version>3.4.0</cxf.version>
     <cxf-xjcplugins.version>3.3.0</cxf-xjcplugins.version>
-    <dbunit.version>2.5.4</dbunit.version>
-    <eclipselink.version>2.7.4</eclipselink.version>
+    <dbunit.version>2.6.0</dbunit.version>
+    <eclipselink.version>2.7.8</eclipselink.version>
     <el-api.version>3.0.0</el-api.version>
-    <git-commit-id-plugin.version>3.0.0</git-commit-id-plugin.version>
-    <groovy.version>2.5.7</groovy.version>
+    <git-commit-id-plugin.version>4.0.0</git-commit-id-plugin.version>
+    <groovy.version>2.5.14</groovy.version>
     <guava.version>28.0-jre</guava.version>
-    <hibernate-validator.version>6.0.17.Final</hibernate-validator.version>
+    <hibernate-validator.version>6.2.0.Final</hibernate-validator.version>
     <jakarta-persistence.version>2.2.2</jakarta-persistence.version>
     <javax-persistence.version>2.2.1</javax-persistence.version>
-    <mysql.version>8.0.11</mysql.version>
+    <modelmapper.version>2.3.9</modelmapper.version>
+    <mysql.version>8.0.22</mysql.version>
     <persistence.version>2.2.1</persistence.version>
-    <slf4j.version>1.7.28</slf4j.version>
+    <slf4j.version>1.7.29</slf4j.version>
     <soapui.version>5.5.0</soapui.version>
-    <spring-boot.version>2.1.6.RELEASE</spring-boot.version>
-    <testcontainers.version>1.12.0</testcontainers.version>
-    <lombok.version>1.18.10</lombok.version>
+    <spring-boot.version>2.4.2</spring-boot.version>
+    <testcontainers.version>1.13.0</testcontainers.version>
+    <lombok.version>1.18.18</lombok.version>
 
     <!-- plugin -->
     <asciidoctor-plugin.version>1.6.0</asciidoctor-plugin.version>
-    <build-helper-plugin.version>3.0.0</build-helper-plugin.version>
+    <build-helper-plugin.version>3.2.0</build-helper-plugin.version>
     <changes-plugin.version>2.12.1</changes-plugin.version>
-    <checkstyle-plugin.version>3.1.0</checkstyle-plugin.version>
-    <clover-plugin.version>4.3.1</clover-plugin.version>
+    <checkstyle-plugin.version>3.1.1</checkstyle-plugin.version>
+    <compiler-plugin.version>3.8.1</compiler-plugin.version>
+    <clover-plugin.version>4.4.0</clover-plugin.version>
     <cxf-plugin.version>${cxf.version}</cxf-plugin.version>
     <dbunit-plugin.version>1.0-beta-3</dbunit-plugin.version>
     <exec-plugin.version>1.6.0</exec-plugin.version>
-    <formatter-plugin.version>2.10.0</formatter-plugin.version>
-    <hibernate-tools-plugin.version>5.4.3.Final</hibernate-tools-plugin.version>
+    <formatter-plugin.version>2.11.0</formatter-plugin.version>
+    <hibernate-tools-plugin.version>5.4.4.Final</hibernate-tools-plugin.version>
     <lifecycle-mapping-plugin.version>1.0.0</lifecycle-mapping-plugin.version>
-    <liquibase-plugin.version>3.6.3</liquibase-plugin.version>
+    <liquibase-plugin.version>3.10.3</liquibase-plugin.version>
     <pmd-plugin.version>3.8</pmd-plugin.version>
-    <processor-plugin.version>3.3.3</processor-plugin.version>
+    <processor-plugin.version>4.2-jdk8</processor-plugin.version>
     <spring-boot-plugin.version>${spring-boot.version}</spring-boot-plugin.version>
     <staticweave-plugin.version>1.0.0</staticweave-plugin.version>
     <tidy-plugin.version>1.1.0</tidy-plugin.version>
@@ -165,11 +184,16 @@
         <version>${hibernate-validator.version}</version>
       </dependency>
       <dependency>
+        <groupId>org.modelmapper</groupId>
+        <artifactId>modelmapper</artifactId>
+        <version>${modelmapper.version}</version>
+      </dependency>
+      <dependency>
         <groupId>org.projectlombok</groupId>
         <artifactId>lombok</artifactId>
         <version>${lombok.version}</version>
-	  </dependency>
-	  <dependency>
+      </dependency>
+      <dependency>
         <groupId>org.slf4j</groupId>
         <artifactId>slf4j-api</artifactId>
         <version>${slf4j.version}</version>
@@ -273,6 +297,30 @@
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>${compiler-plugin.version}</version>
+          <configuration>
+            <source>1.8</source>
+            <target>1.8</target>
+            <encoding>${project.build.sourceEncoding}</encoding>
+            <annotationProcessorPaths>
+              <annotationProcessorPath>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+              </annotationProcessorPath>
+              <annotationProcessorPath>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-jpamodelgen</artifactId>
+                <version>5.4.28.Final</version>
+              </annotationProcessorPath>
+            </annotationProcessorPaths>
+            <!-- works around bug "endPosTable already set" -->
+            <useIncrementalCompilation>false</useIncrementalCompilation>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-pmd-plugin</artifactId>
           <version>${pmd-plugin.version}</version>
           <executions>
@@ -300,13 +348,6 @@
           <configuration>
             <autoVersionSubmodules>true</autoVersionSubmodules>
             <pushChanges>false</pushChanges>
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-site-plugin</artifactId>
-          <configuration>
-            <chmodMode>a+rwX</chmodMode>
           </configuration>
         </plugin>
         <plugin>
@@ -364,12 +405,16 @@
                 </includes>
               </resource>
             </resources>
-            <imagesDir>${project.reporting.outputDirectory}/spec/img</imagesDir>
             <outputDirectory>${project.reporting.outputDirectory}/spec</outputDirectory>
             <requires>
               <require>asciidoctor-diagram</require>
             </requires>
           </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>build-helper-maven-plugin</artifactId>
+          <version>${build-helper-plugin.version}</version>
         </plugin>
         <plugin>
           <groupId>org.bsc.maven</groupId>
@@ -384,13 +429,11 @@
               </goals>
               <configuration>
                 <!-- I think these lines are unncecessary -->
-                <compilerArguments>
-                  -Aeclipselink.persistencexml=${basedir}/src/main/resources/META-INF/persistence.xml
-                </compilerArguments>
+                <compilerArguments>-Aeclipselink.persistencexml=${basedir}/src/main/resources/META-INF/persistence.xml</compilerArguments>
                 <processors>
                   <processor>org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor</processor>
                 </processors>
-                <outputDirectory>${project.build.directory}/generated-sources/jpa</outputDirectory>
+                <outputDirectory>${project.build.directory}/generated-sources</outputDirectory>
               </configuration>
             </execution>
           </executions>
@@ -406,11 +449,6 @@
               <version>${groovy.version}</version>
             </dependency>
           </dependencies>
-        </plugin>
-        <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>build-helper-maven-plugin</artifactId>
-          <version>${build-helper-plugin.version}</version>
         </plugin>
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
@@ -565,7 +603,7 @@
                     </goals>
                   </pluginExecutionFilter>
                   <action>
-                    <ignore/>
+                    <ignore />
                   </action>
                 </pluginExecution>
               </pluginExecutions>
@@ -775,6 +813,7 @@
             </goals>
             <configuration>
               <backend>html</backend>
+              <imagesDir>img</imagesDir>
             </configuration>
           </execution>
           <execution>
@@ -786,6 +825,7 @@
             <configuration>
               <backend>pdf</backend>
               <doctype>book</doctype>
+              <imagesDir>${project.reporting.outputDirectory}/spec/img</imagesDir>
             </configuration>
           </execution>
         </executions>
@@ -870,27 +910,27 @@
           </reportSet>
         </reportSets>
       </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <configuration>
-          <author>true</author>
-          <use>true</use>
-          <quiet>false</quiet>
-          <failOnError>false</failOnError>
-          <show>private</show>
-          <detail>true</detail>
-        </configuration>
-        <reportSets>
-          <reportSet>
-            <reports>
-              <report>aggregate</report>
-              <report>javadoc</report>
-              <report>test-javadoc</report>
-            </reports>
-          </reportSet>
-        </reportSets>
-      </plugin>
+      <!-- <plugin> -->
+      <!-- <groupId>org.apache.maven.plugins</groupId> -->
+      <!-- <artifactId>maven-javadoc-plugin</artifactId> -->
+      <!-- <configuration> -->
+      <!-- <author>true</author> -->
+      <!-- <use>true</use> -->
+      <!-- <quiet>false</quiet> -->
+      <!-- <failOnError>false</failOnError> -->
+      <!-- <show>private</show> -->
+      <!-- <detail>true</detail> -->
+      <!-- </configuration> -->
+      <!-- <reportSets> -->
+      <!-- <reportSet> -->
+      <!-- <reports> -->
+      <!-- <report>aggregate</report> -->
+      <!-- <report>javadoc</report> -->
+      <!-- <report>test-javadoc</report> -->
+      <!-- </reports> -->
+      <!-- </reportSet> -->
+      <!-- </reportSets> -->
+      <!-- </plugin> -->
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>versions-maven-plugin</artifactId>

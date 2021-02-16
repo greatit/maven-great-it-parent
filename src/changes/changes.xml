@@ -6,6 +6,11 @@
     <author email="david.lakatos@great-it.com">David Lakatos</author>
   </properties>
   <body>
+    <release version="v5" date="2021-02-16">
+      <action type="fix" dev="Laszlo Baboth" date="2020-09-30">Fixes Asciidoctor HTML image references</action>
+      <action type="add" dev="David Lakatos" date="2020-09-30">Upgrades parent to v23</action>
+      <action type="update" dev="David Lakatos" date="2021-02-16">Upgrades several dependencies and plugins</action>
+    </release>
     <release version="v1" date="2019-06-28">
       <action type="add" dev="David Lakatos" date="2019-06-28">Extracts plugin and dependency versions from existing projects
       </action>
