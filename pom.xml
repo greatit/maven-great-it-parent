@@ -10,7 +10,7 @@
 
   <groupId>com.greatit</groupId>
   <artifactId>maven-greatit-parent</artifactId>
-  <version>5</version>
+  <version>6-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>maven-greatit-parent</name>
@@ -115,7 +115,7 @@
     <persistence.version>2.2.1</persistence.version>
     <slf4j.version>1.7.29</slf4j.version>
     <soapui.version>5.5.0</soapui.version>
-    <spring-boot.version>2.4.2</spring-boot.version>
+    <spring-boot.version>2.5.0-SNAPSHOT</spring-boot.version>
     <testcontainers.version>1.13.0</testcontainers.version>
     <lombok.version>1.18.18</lombok.version>
 
@@ -206,6 +206,44 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
+
+  <repositories>
+    <repository>
+      <id>spring-snapshot</id>
+      <url>https://repo.spring.io/snapshot/</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+        <updatePolicy>daily</updatePolicy>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>spring-libs-snapshot</id>
+      <url>https://repo.spring.io/libs-snapshot/</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+        <updatePolicy>daily</updatePolicy>
+      </snapshots>
+    </repository>
+  </repositories>
+  <pluginRepositories>
+    <pluginRepository>
+      <id>spring-snapshot</id>
+      <url>https://repo.spring.io/snapshot/</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+        <updatePolicy>daily</updatePolicy>
+      </snapshots>
+    </pluginRepository>
+  </pluginRepositories>
 
   <build>
     <pluginManagement>
