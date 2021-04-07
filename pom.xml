@@ -794,6 +794,8 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-site-plugin</artifactId>
+        <!-- https://maven.apache.org/guides/mini/guide-reproducible-builds.html -->
+        <version>3.9.0</version>
         <executions>
           <execution>
             <id>generate-site-jar</id>
@@ -829,6 +831,8 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
+        <!-- https://maven.apache.org/guides/mini/guide-reproducible-builds.html -->
+        <version>3.3.1</version>
         <configuration>
           <archive>
             <manifest>
@@ -948,27 +952,15 @@
           </reportSet>
         </reportSets>
       </plugin>
-      <!-- <plugin> -->
-      <!-- <groupId>org.apache.maven.plugins</groupId> -->
-      <!-- <artifactId>maven-javadoc-plugin</artifactId> -->
-      <!-- <configuration> -->
-      <!-- <author>true</author> -->
-      <!-- <use>true</use> -->
-      <!-- <quiet>false</quiet> -->
-      <!-- <failOnError>false</failOnError> -->
-      <!-- <show>private</show> -->
-      <!-- <detail>true</detail> -->
-      <!-- </configuration> -->
-      <!-- <reportSets> -->
-      <!-- <reportSet> -->
-      <!-- <reports> -->
-      <!-- <report>aggregate</report> -->
-      <!-- <report>javadoc</report> -->
-      <!-- <report>test-javadoc</report> -->
-      <!-- </reports> -->
-      <!-- </reportSet> -->
-      <!-- </reportSets> -->
-      <!-- </plugin> -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <!-- https://maven.apache.org/guides/mini/guide-reproducible-builds.html -->
+        <version>3.2.0</version>
+        <configuration>
+          <notimestamp>true</notimestamp>
+        </configuration>
+      </plugin>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>versions-maven-plugin</artifactId>
