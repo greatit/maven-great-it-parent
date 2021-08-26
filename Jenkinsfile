@@ -26,13 +26,13 @@ spec:
     volumeMounts:
     - name: m2-home
       mountPath: /maven-repository
+      subPath: .m2/repository
   imagePullSecrets:
   - name: regcred
   volumes:
   - name: m2-home
-    hostPath:
-      path: /var/lib/jenkins-prod/.m2/repository
-      type: Directory
+    persistentVolumeClaim:
+      claimName: worker-cache
 """
 		}
 	}
