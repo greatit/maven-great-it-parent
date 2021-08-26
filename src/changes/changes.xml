@@ -6,6 +6,11 @@
     <author email="david.lakatos@great-it.com">David Lakatos</author>
   </properties>
   <body>
+    <release version="v6" date="2021-08-26">
+      <action type="update" dev="David Lakatos" date="2021-08-26">Upgrades Spring Boot to 2.5.0</action>
+      <action type="update" dev="David Lakatos" date="2021-08-26">Upgrades Guava to 30.1.1</action>
+      <action type="add" dev="David Lakatos" date="2021-08-26">Enables using reproducible builds</action>
+    </release>
     <release version="v5" date="2021-02-16">
       <action type="fix" dev="Laszlo Baboth" date="2020-09-30">Fixes Asciidoctor HTML image references</action>
       <action type="add" dev="David Lakatos" date="2020-09-30">Upgrades parent to v23</action>
