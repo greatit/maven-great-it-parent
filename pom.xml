@@ -10,7 +10,7 @@
 
   <groupId>com.greatit</groupId>
   <artifactId>maven-greatit-parent</artifactId>
-  <version>6</version>
+  <version>7-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>maven-greatit-parent</name>
