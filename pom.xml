@@ -129,7 +129,7 @@
     <cxf-plugin.version>${cxf.version}</cxf-plugin.version>
     <dbunit-plugin.version>1.0-beta-3</dbunit-plugin.version>
     <exec-plugin.version>1.6.0</exec-plugin.version>
-    <formatter-plugin.version>2.11.0</formatter-plugin.version>
+    <formatter-plugin.version>2.18.0</formatter-plugin.version>
     <hibernate-tools-plugin.version>5.4.4.Final</hibernate-tools-plugin.version>
     <lifecycle-mapping-plugin.version>1.0.0</lifecycle-mapping-plugin.version>
     <liquibase-plugin.version>3.10.3</liquibase-plugin.version>
@@ -268,6 +268,17 @@
           <groupId>net.revelc.code.formatter</groupId>
           <artifactId>formatter-maven-plugin</artifactId>
           <version>${formatter-plugin.version}</version>
+          <configuration>
+            <configFile>eclipse-java-google-style.xml</configFile>
+          </configuration>
+          <executions>
+            <execution>
+              <phase>validate</phase>
+              <goals>
+                <goal>validate</goal>
+              </goals>
+            </execution>
+          </executions>
         </plugin>
         <plugin>
           <groupId>org.apache.cxf</groupId>
