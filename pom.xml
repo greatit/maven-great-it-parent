@@ -54,7 +54,7 @@
   </developers>
 
   <scm>
-    <url>https://github.com/greatit/maven-great_it-parent</url>
+    <url>scm:git:ssh://github.com/greatit/maven-great_it-parent</url>
   </scm>
   <issueManagement>
     <system>github</system>
