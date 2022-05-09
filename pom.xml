@@ -5,26 +5,21 @@
   <parent>
     <groupId>org.apache</groupId>
     <artifactId>apache</artifactId>
-    <version>23</version>
+    <version>26</version>
   </parent>
 
-  <groupId>com.greatit</groupId>
-  <artifactId>maven-greatit-parent</artifactId>
+  <groupId>com.great_it</groupId>
+  <artifactId>maven-great_it-parent</artifactId>
   <version>7-SNAPSHOT</version>
   <packaging>pom</packaging>
 
-  <name>maven-greatit-parent</name>
+  <name>Great-IT Company POM</name>
   <description>Company parent artifact managing plugin and dependency versions for multiple projects.</description>
-  <url></url>
+  <url>https://github.com/greatit/maven-great_it-parent</url>
   <organization>
     <name>Great-IT</name>
     <url>http://great-it.com/</url>
   </organization>
-  <licenses>
-    <license>
-      <name>N/A</name>
-    </license>
-  </licenses>
 
   <developers>
     <developer>
@@ -52,6 +47,13 @@
     </developer>
   </developers>
 
+  <scm>
+    <url>https://github.com/greatit/maven-great_it-parent</url>
+  </scm>
+  <issueManagement>
+    <system>github</system>
+    <url>https://github.com/greatit/maven-great_it-parent/issues</url>
+  </issueManagement>
   <distributionManagement>
     <repository>
       <id>golden-artifactory-public-release</id>
@@ -63,11 +65,6 @@
       <name>Golden Artifactory-snapshots</name>
       <url>https://artifactory.prod.internal.great-it.com/artifactory/maven-snapshot-public</url>
     </snapshotRepository>
-    <site>
-      <id>golden-site-internal</id>
-      <name>Great-IT Projects Site</name>
-      <url>scpexe://site.prod.internal.great-it.com:/var/www/site/${project.artifactId}/${project.version}</url>
-    </site>
   </distributionManagement>
 
   <properties>
@@ -76,14 +73,10 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
     <!-- maven version -->
-    <project.maven.version>[3.6.1,)</project.maven.version>
+    <project.maven.version>[3.8.5,4.0.0)</project.maven.version>
 
     <!-- java version -->
-    <project.java.version>1.8</project.java.version>
-    <maven.compiler.source>${project.java.version}</maven.compiler.source>
-    <maven.compiler.target>${project.java.version}</maven.compiler.target>
-    <maven.processor.source>${project.java.version}</maven.processor.source>
-    <maven.processor.target>${project.java.version}</maven.processor.target>
+    <maven.compiler.release>11</maven.compiler.release>
 
     <!-- location -->
     <perftest.report.directory>${project.build.directory}/soapui/report</perftest.report.directory>
@@ -97,48 +90,48 @@
     <jenkins.password>${env.JENKINSFILE_PLUGIN_GITHUB_PERSONAL_ACCESS_TOKEN}</jenkins.password>
 
     <!-- dependency -->
-    <asciidoctorj-diagram>2.0.1</asciidoctorj-diagram>
-    <asciidoctorj-pdf>1.5.0-rc.2</asciidoctorj-pdf>
-    <cxf.version>3.4.0</cxf.version>
+    <asciidoctorj-diagram.version>2.0.1</asciidoctorj-diagram.version>
+    <asciidoctorj-pdf.version>1.6.2</asciidoctorj-pdf.version>
+    <cxf.version>3.5.2</cxf.version>
     <cxf-xjcplugins.version>3.3.0</cxf-xjcplugins.version>
-    <dbunit.version>2.6.0</dbunit.version>
-    <eclipselink.version>2.7.8</eclipselink.version>
+    <dbunit.version>2.7.3</dbunit.version>
+    <eclipselink.version>3.0.2</eclipselink.version>
     <el-api.version>3.0.0</el-api.version>
-    <git-commit-id-plugin.version>4.0.0</git-commit-id-plugin.version>
-    <groovy.version>2.5.14</groovy.version>
-    <guava.version>30.1.1-jre</guava.version>
+    <git-commit-id-plugin.version>4.9.10</git-commit-id-plugin.version>
+    <groovy.version>3.0.10</groovy.version>
+    <guava.version>31.1-jre</guava.version>
+    <hibernate.version>5.6.2.Final</hibernate.version>
     <hibernate-validator.version>6.2.0.Final</hibernate-validator.version>
-    <jakarta-persistence.version>2.2.2</jakarta-persistence.version>
+    <jakarta-persistence.version>2.2.3</jakarta-persistence.version>
     <javax-persistence.version>2.2.1</javax-persistence.version>
-    <modelmapper.version>2.3.9</modelmapper.version>
+    <lombok.version>1.18.24</lombok.version>
+    <modelmapper.version>3.1.0</modelmapper.version>
     <mysql.version>8.0.22</mysql.version>
     <persistence.version>2.2.1</persistence.version>
     <slf4j.version>1.7.29</slf4j.version>
-    <soapui.version>5.5.0</soapui.version>
-    <spring-boot.version>2.5.0</spring-boot.version>
-    <testcontainers.version>1.13.0</testcontainers.version>
-    <lombok.version>1.18.18</lombok.version>
+    <soapui.version>5.7.0</soapui.version>
+    <spring-boot.version>2.6.7</spring-boot.version>
+    <testcontainers.version>1.17.1</testcontainers.version>
 
     <!-- plugin -->
-    <asciidoctor-plugin.version>1.6.0</asciidoctor-plugin.version>
-    <build-helper-plugin.version>3.2.0</build-helper-plugin.version>
+    <asciidoctor-plugin.version>2.2.2</asciidoctor-plugin.version>
+    <build-helper-plugin.version>3.3.0</build-helper-plugin.version>
     <changes-plugin.version>2.12.1</changes-plugin.version>
-    <checkstyle-plugin.version>3.1.1</checkstyle-plugin.version>
-    <compiler-plugin.version>3.8.1</compiler-plugin.version>
-    <clover-plugin.version>4.4.0</clover-plugin.version>
+    <checkstyle-plugin.version>3.1.2</checkstyle-plugin.version>
+    <clover-plugin.version>4.4.1</clover-plugin.version>
     <cxf-plugin.version>${cxf.version}</cxf-plugin.version>
     <dbunit-plugin.version>1.0-beta-3</dbunit-plugin.version>
-    <exec-plugin.version>1.6.0</exec-plugin.version>
+    <exec-plugin.version>3.0.0</exec-plugin.version>
     <formatter-plugin.version>2.18.0</formatter-plugin.version>
-    <hibernate-tools-plugin.version>5.4.4.Final</hibernate-tools-plugin.version>
+    <hibernate-tools-plugin.version>${hibernate.version}</hibernate-tools-plugin.version>
     <lifecycle-mapping-plugin.version>1.0.0</lifecycle-mapping-plugin.version>
-    <liquibase-plugin.version>3.10.3</liquibase-plugin.version>
-    <pmd-plugin.version>3.8</pmd-plugin.version>
-    <processor-plugin.version>4.2-jdk8</processor-plugin.version>
+    <liquibase-plugin.version>4.10.0</liquibase-plugin.version>
+    <pmd-plugin.version>3.16.0</pmd-plugin.version>
+    <processor-plugin.version>4.5</processor-plugin.version>
     <spring-boot-plugin.version>${spring-boot.version}</spring-boot-plugin.version>
     <staticweave-plugin.version>1.0.0</staticweave-plugin.version>
     <tidy-plugin.version>1.1.0</tidy-plugin.version>
-    <versions-plugin.version>2.7</versions-plugin.version>
+    <versions-plugin.version>2.10.0</versions-plugin.version>
     <jenkinsfile-plugin.version>1.0.1</jenkinsfile-plugin.version>
 
     <!-- extension -->
@@ -152,6 +145,12 @@
         <groupId>com.google.guava</groupId>
         <artifactId>guava</artifactId>
         <version>${guava.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.dbunit</groupId>
+        <artifactId>dbunit</artifactId>
+        <version>${dbunit.version}</version>
+        <scope>test</scope>
       </dependency>
       <dependency>
         <groupId>org.eclipse.persistence</groupId>
@@ -204,22 +203,21 @@
         <artifactId>slf4j-log4j12</artifactId>
         <version>${slf4j.version}</version>
       </dependency>
+      <dependency>
+        <groupId>org.testcontainers</groupId>
+        <artifactId>testcontainers</artifactId>
+        <version>${testcontainers.version}</version>
+        <scope>test</scope>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
-  <repositories>
-    <repository>
-      <id>spring-milestone</id>
-      <url>https://maven.springframework.org/milestone</url>
-      <releases>
-        <enabled>false</enabled>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-        <updatePolicy>daily</updatePolicy>
-      </snapshots>
-    </repository>
-  </repositories>
+  <pluginRepositories>
+    <pluginRepository>
+      <id>smartbear-sweden-plugin-repository</id>
+      <url>https://www.soapui.org/repository/maven2/</url>
+    </pluginRepository>
+  </pluginRepositories>
 
   <build>
     <pluginManagement>
@@ -300,6 +298,13 @@
             <failOnViolation>true</failOnViolation>
             <failsOnError>true</failsOnError>
           </configuration>
+          <dependencies>
+            <dependency>
+              <groupId>com.puppycrawl.tools</groupId>
+              <artifactId>checkstyle</artifactId>
+              <version>10.2</version>
+            </dependency>
+          </dependencies>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -323,11 +328,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
-          <version>${compiler-plugin.version}</version>
           <configuration>
-            <source>1.8</source>
-            <target>1.8</target>
-            <encoding>${project.build.sourceEncoding}</encoding>
             <annotationProcessorPaths>
               <annotationProcessorPath>
                 <groupId>org.projectlombok</groupId>
@@ -337,7 +338,7 @@
               <annotationProcessorPath>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-jpamodelgen</artifactId>
-                <version>5.4.28.Final</version>
+                <version>${hibernate.version}</version>
               </annotationProcessorPath>
             </annotationProcessorPaths>
             <!-- works around bug "endPosTable already set" -->
@@ -410,12 +411,12 @@
             <dependency>
               <groupId>org.asciidoctor</groupId>
               <artifactId>asciidoctorj-pdf</artifactId>
-              <version>${asciidoctorj-pdf}</version>
+              <version>${asciidoctorj-pdf.version}</version>
             </dependency>
             <dependency>
               <groupId>org.asciidoctor</groupId>
               <artifactId>asciidoctorj-diagram</artifactId>
-              <version>${asciidoctorj-diagram}</version>
+              <version>${asciidoctorj-diagram.version}</version>
             </dependency>
           </dependencies>
           <configuration>
@@ -750,7 +751,7 @@
             <configuration>
               <rules>
                 <requireJavaVersion>
-                  <version>${project.java.version}</version>
+                  <version>${maven.compiler.release}</version>
                 </requireJavaVersion>
               </rules>
             </configuration>
@@ -781,8 +782,6 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-site-plugin</artifactId>
-        <!-- https://maven.apache.org/guides/mini/guide-reproducible-builds.html -->
-        <version>3.9.0</version>
         <executions>
           <execution>
             <id>generate-site-jar</id>
@@ -818,8 +817,6 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
-        <!-- https://maven.apache.org/guides/mini/guide-reproducible-builds.html -->
-        <version>3.3.1</version>
         <configuration>
           <archive>
             <manifest>
@@ -881,13 +878,6 @@
         </executions>
       </plugin>
     </plugins>
-    <extensions>
-      <extension>
-        <groupId>org.apache.maven.wagon</groupId>
-        <artifactId>wagon-ssh-external</artifactId>
-        <version>${wagon-ssh-extension.version}</version>
-      </extension>
-    </extensions>
   </build>
 
   <reporting>
