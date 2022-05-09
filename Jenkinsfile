@@ -1,7 +1,7 @@
 pipeline {
 	parameters {
-		string(name: "MVN_VERSION", defaultValue: "3.6.3", description: "Maven version")
-		string(name: "JAVA_VERSION", defaultValue: "openjdk-8", description: "Java version")
+		string(name: "MVN_VERSION", defaultValue: "3.8.5", description: "Maven version")
+		string(name: "JAVA_VERSION", defaultValue: "openjdk-11", description: "Java version")
 	}
 	environment {
 		JENKINSFILE_PLUGIN_GITHUB_PERSONAL_ACCESS_TOKEN = credentials('great-bot-github-token')
