@@ -5,8 +5,9 @@ pipeline {
 	}
 	environment {
 		JENKINSFILE_PLUGIN_GITHUB_PERSONAL_ACCESS_TOKEN = credentials('great-bot-github-token')
+		GNUPGHOME = '/gpg-keyring/.gnupg'
+		GPG_PASSPHRASE = credentials('gpg.passphrase')
 	}
-
 	agent {
 		kubernetes {
 			yaml """
@@ -27,12 +28,17 @@ spec:
     - name: m2-home
       mountPath: /maven-repository
       subPath: .m2/repository
+    - name: gnupg
+      mountPath: /gpg-keyring
   imagePullSecrets:
   - name: regcred
   volumes:
   - name: m2-home
     persistentVolumeClaim:
       claimName: worker-cache
+  - name: gnupg
+    persistentVolumeClaim:
+      claimName: worker-gpg
 """
 		}
 	}
@@ -41,7 +47,8 @@ spec:
 			steps {
 				configFileProvider([configFile(fileId: '650e4889-d136-4524-a21c-6314f246a9f5', variable: 'MAVEN_SETTINGS_XML')]) {
 					container('maven') {
-						sh 'mvn -s $MAVEN_SETTINGS_XML clean deploy'
+						sh 'gpgconf --launch gpg-agent'
+						sh 'mvn -s $MAVEN_SETTINGS_XML -Dgpg.homedir=$GNUPGHOME -Dgpg.passphrase=$GPG_PASSPHRASE clean deploy'
 					}
 				}
 			}
