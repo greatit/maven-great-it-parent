@@ -8,14 +8,14 @@
     <version>26</version>
   </parent>
 
-  <groupId>com.great_it</groupId>
-  <artifactId>maven-great_it-parent</artifactId>
+  <groupId>com.great-it</groupId>
+  <artifactId>maven-great-it-parent</artifactId>
   <version>7.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Great-IT Company POM</name>
   <description>Company parent artifact managing plugin and dependency versions for multiple projects.</description>
-  <url>https://github.com/greatit/maven-great_it-parent</url>
+  <url>https://github.com/greatit/maven-great-it-parent</url>
   <organization>
     <name>Great-IT</name>
     <url>http://great-it.com/</url>
@@ -54,13 +54,13 @@
   </developers>
 
   <scm>
-    <connection>scm:git:git://github.com/greatit/maven-great_it-parent.git</connection>
-    <developerConnection>scm:git:ssh://github.com:greatit/maven-great_it-parent.git</developerConnection>
-    <url>http://github.com/greatit/maven-great_it-parent/tree/master</url>
+    <connection>scm:git:git://github.com/greatit/maven-great-it-parent.git</connection>
+    <developerConnection>scm:git:ssh://github.com:greatit/maven-great-it-parent.git</developerConnection>
+    <url>http://github.com/greatit/maven-great-it-parent/tree/master</url>
   </scm>
   <issueManagement>
     <system>github</system>
-    <url>https://github.com/greatit/maven-great_it-parent/issues</url>
+    <url>https://github.com/greatit/maven-great-it-parent/issues</url>
   </issueManagement>
   <distributionManagement>
     <repository>
