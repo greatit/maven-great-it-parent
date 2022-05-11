@@ -231,11 +231,6 @@
     <pluginManagement>
       <plugins>
         <plugin>
-          <groupId>com.andyserver.maven.plugins</groupId>
-          <artifactId>jenkinsfile-maven-plugin</artifactId>
-          <version>${jenkinsfile-plugin.version}</version>
-        </plugin>
-        <plugin>
           <groupId>de.empulse.eclipselink</groupId>
           <artifactId>staticweave-maven-plugin</artifactId>
           <version>${staticweave-plugin.version}</version>
@@ -979,4 +974,33 @@
       </plugin>
     </plugins>
   </reporting>
+
+  <profiles>
+    <profile>
+      <id>jenkins-pipeline-provided</id>
+      <activation>
+        <file>
+          <exists>Jenkinsfile</exists>
+        </file>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>com.andyserver.maven.plugins</groupId>
+            <artifactId>jenkinsfile-maven-plugin</artifactId>
+            <version>${jenkinsfile-plugin.version}</version>
+            <inherited>true</inherited>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>validate</goal>
+                </goals>
+                <phase>validate</phase>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 </project>
