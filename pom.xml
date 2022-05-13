@@ -704,9 +704,12 @@
               <goal>check</goal>
             </goals>
             <configuration>
-              <violationSeverity>warning</violationSeverity>
               <configLocation>google_checks.xml</configLocation>
               <includeTestSourceDirectory>true</includeTestSourceDirectory>
+              <sourceDirectories>
+                <sourceDirectory>${project.build.sourceDirectory}</sourceDirectory>
+              </sourceDirectories>
+              <violationSeverity>warning</violationSeverity>
             </configuration>
           </execution>
           <execution>
