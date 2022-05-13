@@ -87,7 +87,7 @@
     <maven.compiler.release>11</maven.compiler.release>
 
     <!-- CXF WSDL codegenerator -->
-    <relativeWsdlRoot>src/main/resources/wsdl</relativeWsdlRoot>
+    <relativeWsdlRoot>src/main/webapp/WEB-INF/wsdl</relativeWsdlRoot>
     <cxf.wsdlRoot>${project.basedir}/${relativeWsdlRoot}</cxf.wsdlRoot>
 
     <!-- location -->
