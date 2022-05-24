@@ -781,6 +781,12 @@
         <artifactId>maven-failsafe-plugin</artifactId>
         <configuration>
           <classesDirectory>${project.build.outputDirectory}</classesDirectory>
+          <includes>
+            <include>**/IT*.java</include>
+            <include>**/*IT.java</include>
+            <include>**/*ITCase.java</include>
+            <include>**/*IntegrationTest.java</include>
+          </includes>
         </configuration>
         <executions>
           <execution>
