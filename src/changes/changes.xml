@@ -6,6 +6,7 @@
     <author email="david.lakatos@great-it.com">David Lakatos</author>
   </properties>
   <body>
+    <release version="v7" date="yyyy-MM-dd"/>
     <release version="v6" date="2021-08-26">
       <action type="update" dev="David Lakatos" date="2021-08-26">Upgrades Spring Boot to 2.5.0</action>
       <action type="update" dev="David Lakatos" date="2021-08-26">Upgrades Guava to 30.1.1</action>
