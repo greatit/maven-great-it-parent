@@ -104,7 +104,7 @@
     <!-- dependency -->
     <asciidoctorj-diagram.version>2.0.1</asciidoctorj-diagram.version>
     <asciidoctorj-pdf.version>1.6.2</asciidoctorj-pdf.version>
-    <cxf.version>3.5.2</cxf.version>
+    <cxf.version>3.5.4</cxf.version>
     <cxf-xjcplugins.version>3.3.0</cxf-xjcplugins.version>
     <dbunit.version>2.7.3</dbunit.version>
     <eclipselink.version>3.0.2</eclipselink.version>
@@ -132,7 +132,7 @@
     <changes-plugin.version>2.12.1</changes-plugin.version>
     <checkstyle-plugin.version>3.1.2</checkstyle-plugin.version>
     <clover-plugin.version>4.4.1</clover-plugin.version>
-    <cxf-plugin.version>3.5.4</cxf-plugin.version>
+    <cxf-plugin.version>${cxf.version}</cxf-plugin.version>
     <dbunit-plugin.version>1.0-beta-3</dbunit-plugin.version>
     <exec-plugin.version>3.0.0</exec-plugin.version>
     <formatter-plugin.version>2.18.0</formatter-plugin.version>
