@@ -1,0 +1,20 @@
+name: Trello integration
+on:
+    pull_request:
+        types: [opened, edited, closed, assigned, unassigned]
+jobs:
+    manage_card:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: greatit/trello-integration-action@feature/prassign
+              with:
+                  # value provided by GitHub
+                  github-token: ${{ secrets.GITHUB_TOKEN }}
+                  # value provided by organization secret
+                  trello-api-key: ${{ secrets.TRELLO_KEY }}
+                  # value provided by organization secret
+                  trello-auth-token: ${{ secrets.TRELLO_TOKEN }}
+                  # WARNING: value should be provided by repository secret
+                  trello-list-id-pr-open: ${{ secrets.TRELLO_PR_OPEN_LIST_ID }}
+                  # WARNING: value should be provided by repository secret
+                  trello-list-id-pr-closed: ${{ secrets.TRELLO_PR_CLOSED_LIST_ID }}
