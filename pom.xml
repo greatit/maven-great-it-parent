@@ -104,7 +104,7 @@
     <!-- dependency -->
     <asciidoctorj-diagram.version>2.0.1</asciidoctorj-diagram.version>
     <asciidoctorj-pdf.version>1.6.2</asciidoctorj-pdf.version>
-    <cxf.version>3.5.2</cxf.version>
+    <cxf.version>3.5.4</cxf.version>
     <cxf-xjcplugins.version>3.3.0</cxf-xjcplugins.version>
     <dbunit.version>2.7.3</dbunit.version>
     <eclipselink.version>3.0.2</eclipselink.version>
