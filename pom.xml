@@ -140,6 +140,7 @@
     <lifecycle-mapping-plugin.version>1.0.0</lifecycle-mapping-plugin.version>
     <liquibase-plugin.version>4.17.2</liquibase-plugin.version>
     <pmd-plugin.version>3.16.0</pmd-plugin.version>
+    <pmd-plugin.version>3.19.0</pmd-plugin.version>
     <processor-plugin.version>4.5-jdk8</processor-plugin.version>
     <spring-boot-plugin.version>${spring-boot.version}</spring-boot-plugin.version>
     <staticweave-plugin.version>1.0.0</staticweave-plugin.version>
