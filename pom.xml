@@ -114,6 +114,7 @@
     <guava.version>31.1-jre</guava.version>
     <hibernate.version>5.6.2.Final</hibernate.version>
     <hibernate-validator.version>6.2.0.Final</hibernate-validator.version>
+    <jackson.version>2.14.1</jackson.version>
     <jakarta-persistence.version>2.2.3</jakarta-persistence.version>
     <javax-persistence.version>2.2.1</javax-persistence.version>
     <lombok.version>1.18.24</lombok.version>
@@ -140,6 +141,7 @@
     <clover-plugin.version>4.4.1</clover-plugin.version>
     <cxf-plugin.version>${cxf.version}</cxf-plugin.version>
     <dbunit-plugin.version>1.0-beta-3</dbunit-plugin.version>
+    <dependency-check-plugin.version>7.3.2</dependency-check-plugin.version>
     <exec-plugin.version>3.0.0</exec-plugin.version>
     <formatter-plugin.version>2.18.0</formatter-plugin.version>
     <hibernate-tools-plugin.version>${hibernate.version}</hibernate-tools-plugin.version>
@@ -160,6 +162,11 @@
   <dependencyManagement>
     <dependencies>
       <!-- single dependencies -->
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <version>${jackson.version}</version>
+      </dependency>
       <dependency>
         <groupId>com.google.guava</groupId>
         <artifactId>guava</artifactId>
@@ -719,6 +726,25 @@
           <artifactId>git-commit-id-plugin</artifactId>
           <version>${git-commit-id-plugin.version}</version>
         </plugin>
+        <plugin>
+          <groupId>org.owasp</groupId>
+          <artifactId>dependency-check-maven</artifactId>
+          <version>${dependency-check-plugin.version}</version>
+          <configuration>
+            <!--
+              Value decided by Attila Unyi <attila.unyi@great-it.com>
+                  and David Lakatos <david.lakatos@great-it.com>.
+             -->
+            <failBuildOnCVSS>7</failBuildOnCVSS>
+          </configuration>
+          <executions>
+            <execution>
+              <goals>
+                <goal>aggregate</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
       </plugins>
     </pluginManagement>
     <plugins>
@@ -935,6 +961,10 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>versions-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.owasp</groupId>
+        <artifactId>dependency-check-maven</artifactId>
       </plugin>
     </plugins>
   </build>
