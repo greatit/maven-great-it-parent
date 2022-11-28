@@ -149,6 +149,7 @@
     <liquibase-plugin.version>4.17.2</liquibase-plugin.version>
     <pmd-plugin.version>3.19.0</pmd-plugin.version>
     <processor-plugin.version>4.5</processor-plugin.version>
+    <spotbugs-plugin.version>4.7.3.0</spotbugs-plugin.version>
     <spring-boot-plugin.version>${spring-boot.version}</spring-boot-plugin.version>
     <staticweave-plugin.version>1.0.0</staticweave-plugin.version>
     <tidy-plugin.version>1.1.0</tidy-plugin.version>
@@ -336,6 +337,11 @@
           <groupId>org.apache.cxf</groupId>
           <artifactId>cxf-wsdl-validator-plugin</artifactId>
           <version>${cxf-plugin.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>com.github.spotbugs</groupId>
+          <artifactId>spotbugs-maven-plugin</artifactId>
+          <version>${spotbugs-plugin.version}</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -585,6 +591,19 @@
                 </pluginExecution>
                 <pluginExecution>
                   <pluginExecutionFilter>
+                    <groupId></groupId>
+                    <artifactId></artifactId>
+                    <versionRange>[${spotbugs-plugin.version},)</versionRange>
+                    <goals>
+                      <goal>check</goal>
+                    </goals>
+                  </pluginExecutionFilter>
+                  <action>
+                    <ignore />
+                  </action>
+                </pluginExecution>
+                <pluginExecution>
+                  <pluginExecutionFilter>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-checkstyle-plugin</artifactId>
                     <versionRange>[3.0.0,)</versionRange>
@@ -748,6 +767,19 @@
       </plugins>
     </pluginManagement>
     <plugins>
+      <plugin>
+        <groupId>com.github.spotbugs</groupId>
+        <artifactId>spotbugs-maven-plugin</artifactId>
+        <inherited>true</inherited>
+        <executions>
+          <execution>
+            <phase>process-classes</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
