@@ -113,7 +113,7 @@
     <groovy.version>3.0.14</groovy.version>
     <guava.version>31.1-jre</guava.version>
     <hibernate.version>5.6.2.Final</hibernate.version>
-    <hibernate-validator.version>6.2.0.Final</hibernate-validator.version>
+    <hibernate-validator.version>8.0.0.Final</hibernate-validator.version>
     <jackson.version>2.14.1</jackson.version>
     <jakarta-persistence.version>2.2.3</jakarta-persistence.version>
     <javax-persistence.version>2.2.1</javax-persistence.version>
