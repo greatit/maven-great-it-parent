@@ -110,7 +110,7 @@
     <eclipselink.version>3.0.2</eclipselink.version>
     <el-api.version>3.0.0</el-api.version>
     <git-commit-id-plugin.version>4.9.10</git-commit-id-plugin.version>
-    <groovy.version>3.0.10</groovy.version>
+    <groovy.version>3.0.14</groovy.version>
     <guava.version>31.1-jre</guava.version>
     <hibernate.version>5.6.2.Final</hibernate.version>
     <hibernate-validator.version>8.0.0.Final</hibernate-validator.version>
@@ -129,7 +129,7 @@
      -->
     <snakeyaml.version>1.33</snakeyaml.version>
     <soapui.version>5.7.0</soapui.version>
-    <spring-boot.version>2.7.0</spring-boot.version>
+    <spring-boot.version>2.7.6</spring-boot.version>
     <spring-test-dbunit.version>1.3.0</spring-test-dbunit.version>
     <testcontainers.version>1.17.6</testcontainers.version>
 
@@ -141,7 +141,7 @@
     <clover-plugin.version>4.4.1</clover-plugin.version>
     <cxf-plugin.version>${cxf.version}</cxf-plugin.version>
     <dbunit-plugin.version>1.0-beta-3</dbunit-plugin.version>
-    <dependency-check-plugin.version>7.3.2</dependency-check-plugin.version>
+    <dependency-check-plugin.version>8.0.0</dependency-check-plugin.version>
     <exec-plugin.version>3.0.0</exec-plugin.version>
     <formatter-plugin.version>2.18.0</formatter-plugin.version>
     <hibernate-tools-plugin.version>${hibernate.version}</hibernate-tools-plugin.version>
@@ -149,6 +149,7 @@
     <liquibase-plugin.version>4.17.2</liquibase-plugin.version>
     <pmd-plugin.version>3.19.0</pmd-plugin.version>
     <processor-plugin.version>4.5</processor-plugin.version>
+    <spotbugs-plugin.version>4.7.3.0</spotbugs-plugin.version>
     <spring-boot-plugin.version>${spring-boot.version}</spring-boot-plugin.version>
     <staticweave-plugin.version>1.0.0</staticweave-plugin.version>
     <tidy-plugin.version>1.1.0</tidy-plugin.version>
@@ -336,6 +337,11 @@
           <groupId>org.apache.cxf</groupId>
           <artifactId>cxf-wsdl-validator-plugin</artifactId>
           <version>${cxf-plugin.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>com.github.spotbugs</groupId>
+          <artifactId>spotbugs-maven-plugin</artifactId>
+          <version>${spotbugs-plugin.version}</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -585,6 +591,19 @@
                 </pluginExecution>
                 <pluginExecution>
                   <pluginExecutionFilter>
+                    <groupId></groupId>
+                    <artifactId></artifactId>
+                    <versionRange>[${spotbugs-plugin.version},)</versionRange>
+                    <goals>
+                      <goal>check</goal>
+                    </goals>
+                  </pluginExecutionFilter>
+                  <action>
+                    <ignore />
+                  </action>
+                </pluginExecution>
+                <pluginExecution>
+                  <pluginExecutionFilter>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-checkstyle-plugin</artifactId>
                     <versionRange>[3.0.0,)</versionRange>
@@ -748,6 +767,19 @@
       </plugins>
     </pluginManagement>
     <plugins>
+      <plugin>
+        <groupId>com.github.spotbugs</groupId>
+        <artifactId>spotbugs-maven-plugin</artifactId>
+        <inherited>true</inherited>
+        <executions>
+          <execution>
+            <phase>process-classes</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
