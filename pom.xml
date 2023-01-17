@@ -107,7 +107,7 @@
     <cxf.version>3.5.4</cxf.version>
     <cxf-xjcplugins.version>3.3.0</cxf-xjcplugins.version>
     <dbunit.version>2.7.3</dbunit.version>
-    <eclipselink.version>3.0.2</eclipselink.version>
+    <eclipselink.version>4.0.0</eclipselink.version>
     <el-api.version>3.0.0</el-api.version>
     <git-commit-id-plugin.version>4.9.10</git-commit-id-plugin.version>
     <groovy.version>3.0.14</groovy.version>
