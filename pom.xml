@@ -139,7 +139,7 @@
     <changes-plugin.version>2.12.1</changes-plugin.version>
     <checkstyle-plugin.version>3.1.2</checkstyle-plugin.version>
     <clover-plugin.version>4.4.1</clover-plugin.version>
-    <cxf-plugin.version>${cxf.version}</cxf-plugin.version>
+    <cxf-plugin.version>4.0.0</cxf-plugin.version>
     <dbunit-plugin.version>1.0-beta-3</dbunit-plugin.version>
     <dependency-check-plugin.version>8.0.0</dependency-check-plugin.version>
     <exec-plugin.version>3.1.0</exec-plugin.version>
