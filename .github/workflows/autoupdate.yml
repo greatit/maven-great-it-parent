@@ -1,0 +1,13 @@
+name: autoupdate
+on:
+  push: {}
+jobs:
+  autoupdate:
+    name: autoupdate
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Update All Pull Requests
+        uses: juliangruber/update-pull-request-branch-action@v1
+        with:
+          waitForPullRequestUpdated: false
+          github_token: ${{ secrets.GITHUB_TOKEN }}

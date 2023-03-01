@@ -10,7 +10,7 @@
 
   <groupId>com.great-it</groupId>
   <artifactId>maven-great-it-parent</artifactId>
-  <version>7.0.0</version>
+  <version>7.1.0</version>
   <packaging>pom</packaging>
 
   <name>Great-IT Company POM</name>
@@ -104,16 +104,17 @@
     <!-- dependency -->
     <asciidoctorj-diagram.version>2.0.1</asciidoctorj-diagram.version>
     <asciidoctorj-pdf.version>1.6.2</asciidoctorj-pdf.version>
-    <cxf.version>3.5.2</cxf.version>
+    <cxf.version>3.5.4</cxf.version>
     <cxf-xjcplugins.version>3.3.0</cxf-xjcplugins.version>
     <dbunit.version>2.7.3</dbunit.version>
-    <eclipselink.version>3.0.2</eclipselink.version>
+    <eclipselink.version>4.0.0</eclipselink.version>
     <el-api.version>3.0.0</el-api.version>
     <git-commit-id-plugin.version>4.9.10</git-commit-id-plugin.version>
-    <groovy.version>3.0.10</groovy.version>
+    <groovy.version>3.0.14</groovy.version>
     <guava.version>31.1-jre</guava.version>
     <hibernate.version>5.6.2.Final</hibernate.version>
-    <hibernate-validator.version>6.2.0.Final</hibernate-validator.version>
+    <hibernate-validator.version>8.0.0.Final</hibernate-validator.version>
+    <jackson.version>2.14.1</jackson.version>
     <jakarta-persistence.version>2.2.3</jakarta-persistence.version>
     <javax-persistence.version>2.2.1</javax-persistence.version>
     <lombok.version>1.18.24</lombok.version>
@@ -121,10 +122,16 @@
     <mysql.version>8.0.22</mysql.version>
     <persistence.version>2.2.1</persistence.version>
     <slf4j.version>1.7.29</slf4j.version>
+    <!--
+      must override Spring Boot's SnakeYAML dependency version
+      since the most  recent version 2.7.5 still contains vulnerable
+      SnakeYAML 1.30 on 23.11.2022
+     -->
+    <snakeyaml.version>1.33</snakeyaml.version>
     <soapui.version>5.7.0</soapui.version>
-    <spring-boot.version>2.7.0</spring-boot.version>
+    <spring-boot.version>2.7.7</spring-boot.version>
     <spring-test-dbunit.version>1.3.0</spring-test-dbunit.version>
-    <testcontainers.version>1.17.1</testcontainers.version>
+    <testcontainers.version>1.17.6</testcontainers.version>
 
     <!-- plugin -->
     <asciidoctor-plugin.version>2.2.2</asciidoctor-plugin.version>
@@ -134,13 +141,15 @@
     <clover-plugin.version>4.4.1</clover-plugin.version>
     <cxf-plugin.version>${cxf.version}</cxf-plugin.version>
     <dbunit-plugin.version>1.0-beta-3</dbunit-plugin.version>
-    <exec-plugin.version>3.0.0</exec-plugin.version>
+    <dependency-check-plugin.version>8.0.0</dependency-check-plugin.version>
+    <exec-plugin.version>3.1.0</exec-plugin.version>
     <formatter-plugin.version>2.18.0</formatter-plugin.version>
     <hibernate-tools-plugin.version>${hibernate.version}</hibernate-tools-plugin.version>
     <lifecycle-mapping-plugin.version>1.0.0</lifecycle-mapping-plugin.version>
-    <liquibase-plugin.version>4.10.0</liquibase-plugin.version>
-    <pmd-plugin.version>3.16.0</pmd-plugin.version>
+    <liquibase-plugin.version>4.17.2</liquibase-plugin.version>
+    <pmd-plugin.version>3.19.0</pmd-plugin.version>
     <processor-plugin.version>4.5</processor-plugin.version>
+    <spotbugs-plugin.version>4.7.3.0</spotbugs-plugin.version>
     <spring-boot-plugin.version>${spring-boot.version}</spring-boot-plugin.version>
     <staticweave-plugin.version>1.0.0</staticweave-plugin.version>
     <tidy-plugin.version>1.1.0</tidy-plugin.version>
@@ -154,6 +163,11 @@
   <dependencyManagement>
     <dependencies>
       <!-- single dependencies -->
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <version>${jackson.version}</version>
+      </dependency>
       <dependency>
         <groupId>com.google.guava</groupId>
         <artifactId>guava</artifactId>
@@ -235,6 +249,16 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
+      <!--
+        must override Spring Boot's SnakeYAML dependency version
+        since the most  recent version 2.7.5 still contains vulnerable
+        SnakeYAML 1.30 on 23.11.2022
+       -->
+      <dependency>
+        <groupId>org.yaml</groupId>
+        <artifactId>snakeyaml</artifactId>
+        <version>${snakeyaml.version}</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
@@ -313,6 +337,11 @@
           <groupId>org.apache.cxf</groupId>
           <artifactId>cxf-wsdl-validator-plugin</artifactId>
           <version>${cxf-plugin.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>com.github.spotbugs</groupId>
+          <artifactId>spotbugs-maven-plugin</artifactId>
+          <version>${spotbugs-plugin.version}</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -562,6 +591,19 @@
                 </pluginExecution>
                 <pluginExecution>
                   <pluginExecutionFilter>
+                    <groupId></groupId>
+                    <artifactId></artifactId>
+                    <versionRange>[${spotbugs-plugin.version},)</versionRange>
+                    <goals>
+                      <goal>check</goal>
+                    </goals>
+                  </pluginExecutionFilter>
+                  <action>
+                    <ignore />
+                  </action>
+                </pluginExecution>
+                <pluginExecution>
+                  <pluginExecutionFilter>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-checkstyle-plugin</artifactId>
                     <versionRange>[3.0.0,)</versionRange>
@@ -703,9 +745,41 @@
           <artifactId>git-commit-id-plugin</artifactId>
           <version>${git-commit-id-plugin.version}</version>
         </plugin>
+        <plugin>
+          <groupId>org.owasp</groupId>
+          <artifactId>dependency-check-maven</artifactId>
+          <version>${dependency-check-plugin.version}</version>
+          <configuration>
+            <!--
+              Value decided by Attila Unyi <attila.unyi@great-it.com>
+                  and David Lakatos <david.lakatos@great-it.com>.
+             -->
+            <failBuildOnCVSS>7</failBuildOnCVSS>
+          </configuration>
+          <executions>
+            <execution>
+              <goals>
+                <goal>aggregate</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
       </plugins>
     </pluginManagement>
     <plugins>
+      <plugin>
+        <groupId>com.github.spotbugs</groupId>
+        <artifactId>spotbugs-maven-plugin</artifactId>
+        <inherited>true</inherited>
+        <executions>
+          <execution>
+            <phase>process-classes</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
@@ -919,6 +993,10 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>versions-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.owasp</groupId>
+        <artifactId>dependency-check-maven</artifactId>
       </plugin>
     </plugins>
   </build>
