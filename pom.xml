@@ -127,7 +127,7 @@
       since the most  recent version 2.7.5 still contains vulnerable
       SnakeYAML 1.30 on 23.11.2022
      -->
-    <snakeyaml.version>1.33</snakeyaml.version>
+    <snakeyaml.version>2.0</snakeyaml.version>
     <soapui.version>5.7.0</soapui.version>
     <spring-boot.version>2.7.7</spring-boot.version>
     <spring-test-dbunit.version>1.3.0</spring-test-dbunit.version>
