@@ -10,7 +10,7 @@
 
   <groupId>com.great-it</groupId>
   <artifactId>maven-great-it-parent</artifactId>
-  <version>7.1.0</version>
+  <version>7.2.0</version>
   <packaging>pom</packaging>
 
   <name>Great-IT Company POM</name>
@@ -143,6 +143,7 @@
     <dbunit-plugin.version>1.0-beta-3</dbunit-plugin.version>
     <dependency-check-plugin.version>8.0.0</dependency-check-plugin.version>
     <exec-plugin.version>3.1.0</exec-plugin.version>
+    <findsecbugs-plugin.version>1.12.0</findsecbugs-plugin.version>
     <formatter-plugin.version>2.18.0</formatter-plugin.version>
     <hibernate-tools-plugin.version>${hibernate.version}</hibernate-tools-plugin.version>
     <lifecycle-mapping-plugin.version>1.0.0</lifecycle-mapping-plugin.version>
@@ -771,6 +772,15 @@
         <groupId>com.github.spotbugs</groupId>
         <artifactId>spotbugs-maven-plugin</artifactId>
         <inherited>true</inherited>
+        <configuration>
+          <plugins>
+            <plugin>
+              <groupId>com.h3xstream.findsecbugs</groupId>
+              <artifactId>findsecbugs-plugin</artifactId>
+              <version>${findsecbugs-plugin.version}</version>
+            </plugin>
+          </plugins>
+        </configuration>
         <executions>
           <execution>
             <phase>process-classes</phase>
@@ -1081,6 +1091,39 @@
   </reporting>
 
   <profiles>
+    <profile>
+      <id>publish</id>
+      <properties>
+        <gpg.keyname>6E268C66D25BB8AF4B22128B980D7E98FA30591B</gpg.keyname>
+      </properties>
+      <distributionManagement>
+        <snapshotRepository>
+          <id>ossrh</id>
+          <name>Nexus Snapshot Repository</name>
+          <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+          <id>ossrh</id>
+          <name>Nexus Release Repository</name>
+          <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+      </distributionManagement>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.sonatype.plugins</groupId>
+            <artifactId>nexus-staging-maven-plugin</artifactId>
+            <version>1.6.13</version>
+            <extensions>true</extensions>
+            <configuration>
+              <serverId>ossrh</serverId>
+              <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+              <autoReleaseAfterClose>false</autoReleaseAfterClose>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
     <profile>
       <id>jenkins-pipeline-provided</id>
       <activation>
