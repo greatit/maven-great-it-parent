@@ -48,7 +48,7 @@ spec:
 				configFileProvider([configFile(fileId: '650e4889-d136-4524-a21c-6314f246a9f5', variable: 'MAVEN_SETTINGS_XML')]) {
 					container('maven') {
 						sh 'gpgconf --launch gpg-agent'
-						sh 'mvn -s $MAVEN_SETTINGS_XML -Dgpg.homedir=$GNUPGHOME -Dgpg.passphrase=$GPG_PASSPHRASE clean deploy'
+						sh 'mvn -s $MAVEN_SETTINGS_XML -Pci -Dgpg.homedir=$GNUPGHOME -Dgpg.passphrase=$GPG_PASSPHRASE clean deploy'
 					}
 				}
 			}
