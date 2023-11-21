@@ -113,11 +113,13 @@
     <groovy.version>3.0.14</groovy.version>
     <guava.version>32.1.2-jre</guava.version>
     <hibernate.version>5.6.2.Final</hibernate.version>
-    <hibernate-validator.version>8.0.0.Final</hibernate-validator.version>
-    <jackson.version>2.14.1</jackson.version>
-    <jakarta-persistence.version>2.2.3</jakarta-persistence.version>
-    <javax-persistence.version>2.2.1</javax-persistence.version>
-    <lombok.version>1.18.24</lombok.version>
+    <!-- 6.x required due to https://stackoverflow.com/a/74932171/2728862 -->
+    <hibernate-validator.version>8.0.1.Final</hibernate-validator.version>
+    <jackson.version>2.15.3</jackson.version>
+    <jakarta-expression.version>4.0.2</jakarta-expression.version>
+    <jakarta-persistence.version>3.1.0</jakarta-persistence.version>
+    <jakarta-validation.version>3.0.2</jakarta-validation.version>
+    <lombok.version>1.18.30</lombok.version>
     <modelmapper.version>3.1.0</modelmapper.version>
     <mysql.version>8.0.22</mysql.version>
     <persistence.version>2.2.1</persistence.version>
@@ -129,7 +131,7 @@
      -->
     <snakeyaml.version>1.33</snakeyaml.version>
     <soapui.version>5.7.0</soapui.version>
-    <spring-boot.version>2.7.10</spring-boot.version>
+    <spring-boot.version>2.7.17</spring-boot.version>
     <spring-test-dbunit.version>1.3.0</spring-test-dbunit.version>
     <testcontainers.version>1.17.6</testcontainers.version>
 
@@ -165,9 +167,11 @@
     <dependencies>
       <!-- single dependencies -->
       <dependency>
-        <groupId>com.fasterxml.jackson.core</groupId>
-        <artifactId>jackson-databind</artifactId>
+        <groupId>com.fasterxml.jackson</groupId>
+        <artifactId>jackson-bom</artifactId>
         <version>${jackson.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
       </dependency>
       <dependency>
         <groupId>com.google.guava</groupId>
@@ -181,9 +185,14 @@
         <scope>test</scope>
       </dependency>
       <dependency>
-        <groupId>org.eclipse.persistence</groupId>
-        <artifactId>javax.persistence</artifactId>
-        <version>${javax-persistence.version}</version>
+        <groupId>jakarta.persistence</groupId>
+        <artifactId>jakarta.persistence-api</artifactId>
+        <version>${jakarta-persistence.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.validation</groupId>
+        <artifactId>jakarta.validation-api</artifactId>
+        <version>${jakarta-validation.version}</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.persistence</groupId>
@@ -210,6 +219,11 @@
         <artifactId>spring-test-dbunit</artifactId>
         <version>${spring-test-dbunit.version}</version>
       </dependency>
+      <dependency>
+        <groupId>org.glassfish</groupId>
+        <artifactId>jakarta.el</artifactId>
+        <version>${jakarta-expression.version}</version>
+    </dependency>
       <dependency>
         <groupId>org.hibernate.validator</groupId>
         <artifactId>hibernate-validator</artifactId>
@@ -752,10 +766,9 @@
           <version>${dependency-check-plugin.version}</version>
           <configuration>
             <!--
-              Value decided by Attila Unyi <attila.unyi@great-it.com>
-                  and David Lakatos <david.lakatos@great-it.com>.
+              Value decided by David Lakatos <david.lakatos@great-it.com>.
              -->
-            <failBuildOnCVSS>7</failBuildOnCVSS>
+            <failBuildOnCVSS>9</failBuildOnCVSS>
           </configuration>
           <executions>
             <execution>
