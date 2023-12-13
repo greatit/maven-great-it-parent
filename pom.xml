@@ -100,24 +100,28 @@
     <!-- * admin:org/read:org -->
     <!-- * user/user:email -->
     <jenkins.password>${env.JENKINSFILE_PLUGIN_GITHUB_PERSONAL_ACCESS_TOKEN}</jenkins.password>
+    <nvdApiKey>${env.NVD_API_KEY}</nvdApiKey>
 
     <!-- dependency -->
     <asciidoctorj-diagram.version>2.0.1</asciidoctorj-diagram.version>
     <asciidoctorj-pdf.version>1.6.2</asciidoctorj-pdf.version>
-    <cxf.version>3.5.4</cxf.version>
+    <cxf.version>3.6.2</cxf.version>
     <cxf-xjcplugins.version>3.3.0</cxf-xjcplugins.version>
     <dbunit.version>2.7.3</dbunit.version>
     <eclipselink.version>4.0.0</eclipselink.version>
     <el-api.version>3.0.0</el-api.version>
     <git-commit-id-plugin.version>4.9.10</git-commit-id-plugin.version>
     <groovy.version>3.0.14</groovy.version>
-    <guava.version>31.1-jre</guava.version>
+    <guava.version>32.1.2-jre</guava.version>
     <hibernate.version>5.6.2.Final</hibernate.version>
-    <hibernate-validator.version>8.0.0.Final</hibernate-validator.version>
-    <jackson.version>2.14.1</jackson.version>
-    <jakarta-persistence.version>2.2.3</jakarta-persistence.version>
-    <javax-persistence.version>2.2.1</javax-persistence.version>
-    <lombok.version>1.18.24</lombok.version>
+    <!-- 6.x required due to https://stackoverflow.com/a/74932171/2728862 -->
+    <hibernate-validator.version>8.0.1.Final</hibernate-validator.version>
+    <jackson.version>2.16.0</jackson.version>
+    <jakarta-expression.version>4.0.2</jakarta-expression.version>
+    <jakarta-persistence.version>3.1.0</jakarta-persistence.version>
+    <jakarta-validation.version>3.0.2</jakarta-validation.version>
+    <log4j.version>2.22.0</log4j.version>
+    <lombok.version>1.18.30</lombok.version>
     <modelmapper.version>3.1.0</modelmapper.version>
     <mysql.version>8.0.22</mysql.version>
     <persistence.version>2.2.1</persistence.version>
@@ -129,9 +133,11 @@
      -->
     <snakeyaml.version>2.0</snakeyaml.version>
     <soapui.version>5.7.0</soapui.version>
-    <spring-boot.version>2.7.10</spring-boot.version>
+    <spotbugs.version>4.7.3</spotbugs.version>
+    <spring-boot.version>2.7.17</spring-boot.version>
     <spring-test-dbunit.version>1.3.0</spring-test-dbunit.version>
     <testcontainers.version>1.17.6</testcontainers.version>
+    <wss4j.version>2.4.3</wss4j.version>
 
     <!-- plugin -->
     <asciidoctor-plugin.version>2.2.2</asciidoctor-plugin.version>
@@ -141,7 +147,7 @@
     <clover-plugin.version>4.4.1</clover-plugin.version>
     <cxf-plugin.version>${cxf.version}</cxf-plugin.version>
     <dbunit-plugin.version>1.0-beta-3</dbunit-plugin.version>
-    <dependency-check-plugin.version>8.0.0</dependency-check-plugin.version>
+    <dependency-check-plugin.version>8.4.3</dependency-check-plugin.version>
     <exec-plugin.version>3.1.0</exec-plugin.version>
     <findsecbugs-plugin.version>1.12.0</findsecbugs-plugin.version>
     <formatter-plugin.version>2.18.0</formatter-plugin.version>
@@ -165,9 +171,16 @@
     <dependencies>
       <!-- single dependencies -->
       <dependency>
-        <groupId>com.fasterxml.jackson.core</groupId>
-        <artifactId>jackson-databind</artifactId>
+        <groupId>com.fasterxml.jackson</groupId>
+        <artifactId>jackson-bom</artifactId>
         <version>${jackson.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.github.spotbugs</groupId>
+        <artifactId>spotbugs-annotations</artifactId>
+        <version>${spotbugs.version}</version>
       </dependency>
       <dependency>
         <groupId>com.google.guava</groupId>
@@ -181,9 +194,14 @@
         <scope>test</scope>
       </dependency>
       <dependency>
-        <groupId>org.eclipse.persistence</groupId>
-        <artifactId>javax.persistence</artifactId>
-        <version>${javax-persistence.version}</version>
+        <groupId>jakarta.persistence</groupId>
+        <artifactId>jakarta.persistence-api</artifactId>
+        <version>${jakarta-persistence.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.validation</groupId>
+        <artifactId>jakarta.validation-api</artifactId>
+        <version>${jakarta-validation.version}</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.persistence</groupId>
@@ -211,6 +229,16 @@
         <version>${spring-test-dbunit.version}</version>
       </dependency>
       <dependency>
+        <groupId>org.apache.wss4j</groupId>
+        <artifactId>wss4j-ws-security-dom</artifactId>
+        <version>${wss4j.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.glassfish</groupId>
+        <artifactId>jakarta.el</artifactId>
+        <version>${jakarta-expression.version}</version>
+      </dependency>
+      <dependency>
         <groupId>org.hibernate.validator</groupId>
         <artifactId>hibernate-validator</artifactId>
         <version>${hibernate-validator.version}</version>
@@ -235,6 +263,11 @@
         <groupId>org.slf4j</groupId>
         <artifactId>slf4j-log4j12</artifactId>
         <version>${slf4j.version}</version>
+      </dependency>
+      <dependency>
+	<groupId>org.apache.logging.log4j</groupId>
+	<artifactId>log4j-slf4j2-impl</artifactId>
+	<version>${log4j.version}</version>
       </dependency>
       <dependency>
         <groupId>org.springframework.boot</groupId>
@@ -752,10 +785,9 @@
           <version>${dependency-check-plugin.version}</version>
           <configuration>
             <!--
-              Value decided by Attila Unyi <attila.unyi@great-it.com>
-                  and David Lakatos <david.lakatos@great-it.com>.
+              Value decided by David Lakatos <david.lakatos@great-it.com>.
              -->
-            <failBuildOnCVSS>7</failBuildOnCVSS>
+            <failBuildOnCVSS>9</failBuildOnCVSS>
           </configuration>
           <executions>
             <execution>
