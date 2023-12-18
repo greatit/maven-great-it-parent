@@ -157,7 +157,7 @@
     <pmd-plugin.version>3.19.0</pmd-plugin.version>
     <processor-plugin.version>4.5</processor-plugin.version>
     <spotbugs-plugin.version>4.7.3.0</spotbugs-plugin.version>
-    <spring-boot-plugin.version>${spring-boot.version}</spring-boot-plugin.version>
+    <spring-boot-plugin.version>3.2.0</spring-boot-plugin.version>
     <staticweave-plugin.version>1.0.0</staticweave-plugin.version>
     <tidy-plugin.version>1.1.0</tidy-plugin.version>
     <versions-plugin.version>2.10.0</versions-plugin.version>
