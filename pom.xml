@@ -296,6 +296,24 @@
     </dependencies>
   </dependencyManagement>
 
+  <repositories>
+    <repository>
+      <id>golden-artifactory-internal-release</id>
+      <name>Golden Artifactory-releases</name>
+      <url>https://artifactory.prod.internal.great-it.com/artifactory/maven-release-local</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+    </repository>
+    <repository>
+      <id>golden-artifactory-internal-snapshot</id>
+      <name>Golden Artifactory-snapshots</name>
+      <url>https://artifactory.prod.internal.great-it.com/artifactory/maven-snapshot-local</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+    </repository>
+  </repositories>
   <pluginRepositories>
     <pluginRepository>
       <id>smartbear-sweden-plugin-repository</id>
