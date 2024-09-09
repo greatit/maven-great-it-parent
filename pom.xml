@@ -125,7 +125,7 @@
     <modelmapper.version>3.1.0</modelmapper.version>
     <mysql.version>8.0.22</mysql.version>
     <persistence.version>2.2.1</persistence.version>
-    <slf4j.version>1.7.29</slf4j.version>
+    <slf4j.version>2.0.16</slf4j.version>
     <!--
       must override Spring Boot's SnakeYAML dependency version
       since the most  recent version 2.7.5 still contains vulnerable
